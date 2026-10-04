@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Mirzacho\'l maktabi</string>
+    <string name="title_activity_main">Mirzacho\'l maktabi</string>
+    <string name="package_name">uz.mirzachol.maktabi</string>
+    <string name="custom_url_scheme">uz.mirzachol.maktabi</string>
+</resources>

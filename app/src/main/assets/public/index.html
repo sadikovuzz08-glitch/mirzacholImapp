@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Mirzacho'l tumani ixtisoslashtirilgan maktabi</title>
+<meta name="theme-color" content="#0a1628">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mirzacho'l maktabi">
+<link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6g3uuCqoqasmeI_niUMmi_JwYPwpVHfRe9163-cCw0A&s" type="image/png">
+<link rel="apple-touch-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6g3uuCqoqasmeI_niUMmi_JwYPwpVHfRe9163-cCw0A&s">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@500;600;700;800&family=Pacifico&family=Permanent+Marker&family=Great+Vibes&family=Bungee&family=Orbitron:wght@700&family=Caveat:wght@700&family=Righteous&family=Lobster&family=Press+Start+2P&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+/* ===================================================================
+   MIRZACHO'L TUMANI IXTISOSLASHTIRILGAN MAKTABI — dizayn tizimi
+   =================================================================== */
+:root {
+  --bg-deep: #0a1628; --bg-mid: #0f2136; --bg-card: rgba(19, 38, 61, 0.72);
+  --bg-card-solid: #14273f; --border-soft: rgba(120, 170, 210, 0.18); --border-strong: rgba(120, 170, 210, 0.35);
+  --accent-blue: #1eb8e8; --accent-blue-deep: #0f7fb0; --accent-teal: #22c8a0; --accent-gold: #f0c419; --accent-red: #e8514a;
+  --text-hi: #eef6fb; --text-mid: #a9c1d6; --text-low: #6f89a3;
+  --radius-lg: 20px; --radius-md: 14px; --radius-sm: 9px;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Manrope', -apple-system, sans-serif;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg-deep: #eef4f8; --bg-mid: #dfeaf1; --bg-card: rgba(255, 255, 255, 0.78); --bg-card-solid: #ffffff;
+  --border-soft: rgba(20, 60, 90, 0.12); --border-strong: rgba(20, 60, 90, 0.22);
+  --text-hi: #0d2436; --text-mid: #3c5a72; --text-low: #7691a6;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; min-height: 100vh; font-family: var(--font-body); background: var(--bg-deep); color: var(--text-hi); overflow-x: hidden; }
+body {
+  background-image:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(30, 184, 232, 0.16), transparent),
+    radial-gradient(ellipse 700px 600px at 100% 20%, rgba(34, 200, 160, 0.10), transparent),
+    radial-gradient(ellipse 800px 500px at 50% 110%, rgba(240, 196, 25, 0.06), transparent);
+  background-attachment: fixed;
+}
+::selection { background: var(--accent-blue); color: #04121e; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 8px; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; }
+
+.hidden { display: none !important; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.text-muted { color: var(--text-low); font-size: 13px; }
+.card { background: var(--bg-card); backdrop-filter: blur(16px); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); }
+
+/* ---------- Topbar ---------- */
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 28px; background: var(--bg-card); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 40; }
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand-mark { width: 42px; height: 42px; border-radius: 12px; overflow: hidden; flex-shrink: 0; background: linear-gradient(145deg, var(--accent-blue), var(--accent-teal)); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 20px; color: #04121e; }
+.brand-mark img { width: 100%; height: 100%; object-fit: cover; }
+.brand-text h1 { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin: 0; line-height: 1.15; white-space: nowrap; }
+.brand-text p { margin: 1px 0 0; font-size: 12px; color: var(--text-low); white-space: nowrap; }
+.topbar-nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.nav-pill { display: flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 100px; background: transparent; border: 1px solid transparent; color: var(--text-mid); font-size: 13.5px; font-weight: 600; transition: background .18s, border-color .18s, color .18s; white-space: nowrap; }
+.nav-pill:hover { background: rgba(120,170,210,0.10); color: var(--text-hi); }
+.nav-pill.active { background: var(--border-soft); border-color: var(--border-strong); color: var(--text-hi); }
+.nav-pill svg { width: 16px; height: 16px; flex-shrink: 0; }
+.topbar-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.theme-toggle { display: flex; align-items: center; gap: 6px; padding: 8px 13px; border-radius: 100px; border: 1px solid var(--border-soft); background: rgba(120,170,210,0.06); color: var(--text-mid); font-size: 13px; font-weight: 600; }
+.theme-toggle:hover { border-color: var(--border-strong); color: var(--text-hi); }
+.avatar-btn { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--border-strong); background: linear-gradient(145deg, var(--accent-blue-deep), var(--accent-teal)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #fff; flex-shrink: 0; position: relative; }
+.avatar-btn img { width: 100%; height: 100%; object-fit: cover; }
+.role-tag { font-size: 10px; font-weight: 800; letter-spacing: .3px; padding: 2px 7px; border-radius: 6px; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); white-space: nowrap; border: 1px solid var(--bg-deep); }
+.role-tag.owner { background: var(--accent-gold); color: #3a2c00; }
+.role-tag.director { background: var(--accent-blue); color: #04121e; }
+.role-tag.fan { background: var(--accent-teal); color: #04121e; }
+.role-tag.vip { background: #f0c419; color: #3a2c00; }
+.role-tag.admin { background: #e8514a; color: #fff; }
+.role-tag.operator { background: #27345c; color: #cfe0ff; }
+
+.page-wrap { max-width: 1160px; margin: 0 auto; padding: 28px 20px 80px; }
+
+/* ---------- Auth page ---------- */
+.auth-shell { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.auth-grid { width: 100%; max-width: 980px; display: grid; grid-template-columns: 1fr; gap: 22px; }
+.auth-header { text-align: center; margin-bottom: 6px; }
+.auth-header .school-photo { width: 88px; height: 88px; border-radius: 18px; object-fit: cover; margin: 0 auto 16px; border: 2px solid var(--border-strong); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+.auth-header h1 { font-family: var(--font-display); font-size: 30px; margin: 0 0 6px; font-weight: 600; }
+.auth-header p { color: var(--text-mid); margin: 0; font-size: 14.5px; }
+.auth-panel { padding: 30px 32px; }
+.tab-row { display: flex; gap: 8px; margin-bottom: 22px; background: rgba(120,170,210,0.07); padding: 5px; border-radius: 100px; }
+.tab-btn { flex: 1; padding: 11px 0; border: none; background: transparent; border-radius: 100px; font-weight: 700; font-size: 14.5px; color: var(--text-mid); transition: all .2s; }
+.tab-btn.active { background: linear-gradient(120deg, var(--accent-blue), var(--accent-teal)); color: #04121e; box-shadow: 0 6px 16px rgba(30,184,232,0.25); }
+.field { margin-bottom: 15px; }
+.field label { display: block; font-size: 13px; font-weight: 700; color: var(--text-mid); margin-bottom: 6px; }
+.field input, .field select { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-soft); background: rgba(120,170,210,0.06); color: var(--text-hi); font-size: 14.5px; outline: none; transition: border-color .18s, background .18s; }
+.field input::placeholder { color: var(--text-low); }
+.field input:focus, .field select:focus { border-color: var(--accent-blue); background: rgba(30,184,232,0.06); }
+.field select { appearance: none; cursor: pointer; }
+.avatar-picker { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.avatar-preview { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--border-strong); flex-shrink: 0; background: var(--bg-mid); display: flex; align-items: center; justify-content: center; }
+.avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+.file-btn { padding: 9px 16px; border-radius: var(--radius-sm); border: 1px dashed var(--border-strong); background: rgba(120,170,210,0.05); color: var(--text-mid); font-size: 13px; font-weight: 600; }
+.file-btn:hover { border-color: var(--accent-blue); color: var(--text-hi); }
+.avatar-hint { font-size: 11.5px; color: var(--text-low); margin-top: 4px; }
+.btn-primary { width: 100%; padding: 13px 0; border: none; border-radius: var(--radius-sm); background: linear-gradient(120deg, var(--accent-blue), var(--accent-teal)); color: #04121e; font-weight: 800; font-size: 15px; box-shadow: 0 10px 24px rgba(30,184,232,0.28); transition: transform .15s, box-shadow .15s; }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(30,184,232,0.36); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+.link-btn { background: none; border: none; color: var(--accent-blue); font-size: 13px; font-weight: 600; padding: 0; }
+.link-btn:hover { text-decoration: underline; }
+.modal-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 100px; font-weight: 700; font-size: 13px; border: 1px solid var(--border-soft); background: rgba(120,170,210,0.07); color: var(--text-mid); transition: background .18s, border-color .18s, color .18s, transform .15s; }
+.modal-btn:hover { border-color: var(--border-strong); color: var(--text-hi); background: rgba(120,170,210,0.14); transform: translateY(-1px); }
+.modal-btn:active { transform: translateY(0); }
+.modal-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.modal-btn.danger { border-color: rgba(232,81,74,0.35); color: #ff9d97; background: rgba(232,81,74,0.07); }
+.modal-btn.danger:hover { border-color: rgba(232,81,74,0.6); color: #ffb3ae; background: rgba(232,81,74,0.16); }
+.forgot-row { text-align: center; margin-top: 14px; }
+.error-msg { background: rgba(232,81,74,0.1); border: 1px solid rgba(232,81,74,0.35); color: #ff9d97; font-size: 13px; padding: 10px 13px; border-radius: var(--radius-sm); margin-bottom: 14px; display: none; }
+.error-msg.show { display: block; }
+.success-msg { background: rgba(34,200,160,0.1); border: 1px solid rgba(34,200,160,0.35); color: #7ff0d4; font-size: 13px; padding: 10px 13px; border-radius: var(--radius-sm); margin-bottom: 14px; display: none; }
+.success-msg.show { display: block; }
+.device-row { display: flex; gap: 8px; margin-bottom: 18px; background: rgba(120,170,210,0.07); padding: 5px; border-radius: 100px; }
+.device-btn { flex: 1; padding: 8px 0; border: none; background: transparent; border-radius: 100px; font-weight: 700; font-size: 12.5px; color: var(--text-mid); display: flex; align-items: center; justify-content: center; gap: 6px; }
+.device-btn.active { background: var(--bg-card-solid); color: var(--text-hi); box-shadow: 0 3px 10px rgba(0,0,0,0.2); }
+.device-btn svg { width: 14px; height: 14px; }
+
+/* ---------- Feed / posts ---------- */
+.section-title { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin: 0 0 16px; }
+.post-card { overflow: hidden; margin-bottom: 18px; }
+.post-photo { width: 100%; max-height: 420px; object-fit: cover; display: block; background: var(--bg-mid); }
+.post-body { padding: 16px 18px 14px; }
+.post-pin { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 800; color: var(--accent-gold); letter-spacing: .2px; margin-bottom: 8px; }
+.post-title { font-size: 15.5px; font-weight: 800; margin: 0 0 10px; line-height: 1.4; }
+.post-text { font-size: 14px; line-height: 1.65; color: var(--text-mid); white-space: pre-wrap; margin: 0 0 10px; }
+.post-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-soft); }
+.post-reacts { display: flex; gap: 14px; flex-wrap: wrap; }
+.react-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; color: var(--text-mid); background: rgba(120,170,210,0.06); padding: 5px 10px; border-radius: 100px; border: 1px solid transparent; }
+.react-chip.mine { border-color: var(--accent-blue); color: var(--text-hi); }
+.react-chip:hover { border-color: var(--border-strong); }
+.post-views { font-size: 12px; color: var(--text-low); display: flex; align-items: center; gap: 5px; }
+
+/* ---------- Chat ---------- */
+.chat-layout { display: flex; gap: 14px; align-items: stretch; }
+.chat-contacts { width: 270px; flex-shrink: 0; display: flex; flex-direction: column; height: calc(100vh - 180px); min-height: 480px; padding: 0; overflow: hidden; }
+.chat-contacts-head { padding: 16px 18px; font-weight: 700; font-size: 13.5px; color: var(--text-hi); border-bottom: 1px solid var(--border-soft); }
+.chat-contacts-list { flex: 1; overflow-y: auto; }
+.contact-item { display: flex; align-items: center; gap: 10px; padding: 11px 16px; cursor: pointer; border-bottom: 1px solid rgba(120,170,210,0.05); }
+.contact-item:hover { background: rgba(120,170,210,0.06); }
+.contact-item.active { background: rgba(30,184,232,0.1); }
+.contact-avatar-wrap { position: relative; width: 40px; height: 40px; flex-shrink: 0; }
+.contact-avatar-wrap img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.contact-online-dot { position: absolute; bottom: -1px; right: -1px; width: 11px; height: 11px; border-radius: 50%; background: #3fcf6e; border: 2px solid var(--bg-card-solid); }
+.contact-online-dot.off { background: var(--text-low); }
+.contact-info { min-width: 0; flex: 1; }
+.contact-name-row { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; color: var(--text-hi); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.contact-sub { font-size: 11.5px; color: var(--text-low); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.contact-mini-tag { font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 100px; flex-shrink: 0; }
+.contact-mini-tag.owner { background: var(--accent-gold); color: #3a2c00; }
+.contact-mini-tag.director { background: var(--accent-blue); color: #04121e; }
+.contact-mini-tag.fan { background: var(--accent-teal); color: #04121e; }
+.contact-mini-tag.vip { background: #f0c419; color: #3a2c00; }
+.contact-mini-tag.admin { background: #e8514a; color: #fff; }
+.contact-mini-tag.operator { background: #27345c; color: #cfe0ff; }
+
+.chat-header-bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--border-soft); }
+.chat-header-bar img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+.chat-header-info { display: flex; flex-direction: column; line-height: 1.3; }
+.chat-header-info b { font-size: 13.5px; color: var(--text-hi); }
+.chat-header-info span { font-size: 11px; color: var(--text-low); }
+.chat-img-btn { cursor: pointer; }
+.chat-img-preview { position: relative; width: 44px; height: 44px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+.chat-img-preview img { width: 100%; height: 100%; object-fit: cover; }
+.chat-img-preview .rm-x { position: absolute; top: 0; right: 0; width: 16px; height: 16px; background: rgba(0,0,0,0.65); color: #fff; font-size: 10px; display: flex; align-items: center; justify-content: center; border-radius: 0 0 0 8px; }
+.msg-image { max-width: 240px; border-radius: 12px; margin-top: 6px; display: block; cursor: zoom-in; }
+.perk-remove-btn { font-size: 11.5px; color: #ff9d97; font-weight: 700; margin-top: 6px; background: none; border: none; padding: 0; }
+.perk-remove-btn:hover { text-decoration: underline; }
+.chat-shell { display: flex; flex-direction: column; height: calc(100vh - 180px); min-height: 480px; flex: 1; min-width: 0; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.msg-row { display: flex; gap: 10px; max-width: 78%; }
+.msg-row.me { align-self: flex-end; flex-direction: row-reverse; }
+.msg-avatar { width: 34px; height: 34px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--bg-mid); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--text-mid); }
+.msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.msg-bubble { background: rgba(120,170,210,0.08); border: 1px solid var(--border-soft); border-radius: 16px; padding: 9px 14px; min-width: 0; }
+.msg-row.me .msg-bubble { background: linear-gradient(120deg, rgba(30,184,232,0.22), rgba(34,200,160,0.18)); border-color: rgba(30,184,232,0.35); }
+.msg-name { font-size: 12px; font-weight: 800; margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+.msg-tag { font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 5px; }
+.msg-tag.owner { background: var(--accent-gold); color: #3a2c00; }
+.msg-tag.director { background: var(--accent-blue); color: #04121e; }
+.msg-tag.fan { background: var(--accent-teal); color: #04121e; }
+.msg-tag.vip { background: #f0c419; color: #3a2c00; }
+.msg-tag.admin { background: #e8514a; color: #fff; }
+.msg-tag.operator { background: #27345c; color: #cfe0ff; }
+.msg-tag.custom { color: #04121e; }
+.msg-text { font-size: 14px; line-height: 1.5; word-wrap: break-word; }
+.msg-text.tag-owner { color: var(--accent-red); font-weight: 700; }
+.msg-text.tag-director { color: var(--accent-gold); font-weight: 700; }
+.msg-text.tag-fan { color: var(--accent-teal); font-weight: 700; }
+.msg-text.tag-vip { color: #f0c419; font-weight: 700; }
+.msg-text.tag-admin { color: #e8514a; font-weight: 700; }
+.msg-text.tag-operator { color: #5c7ec9; font-weight: 700; }
+.msg-name-fancy { }
+.chat-blocked-banner { background: rgba(232,81,74,0.12); border: 1px solid rgba(232,81,74,0.4); color: #ff9d97; font-weight: 700; font-size: 13.5px; padding: 12px 16px; border-radius: 12px; margin: 14px; text-align: center; }
+.reg-stopped-banner { background: rgba(232,81,74,0.12); border: 1px solid rgba(232,81,74,0.4); color: #ff9d97; font-weight: 700; font-size: 13px; padding: 10px 13px; border-radius: var(--radius-sm); margin-bottom: 14px; }
+.msg-time { font-size: 10.5px; color: var(--text-low); margin-top: 3px; display: flex; align-items: center; gap: 8px; }
+.msg-del-btn { background: none; border: none; color: var(--text-low); font-size: 11px; padding: 0; cursor: pointer; opacity: .7; }
+.msg-del-btn:hover { color: #ff9d97; opacity: 1; }
+.msg-row.msg-deleted .msg-bubble { opacity: .6; }
+.msg-deleted-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; font-weight: 800; color: #ff9d97; background: rgba(232,81,74,0.1); border: 1px solid rgba(232,81,74,0.3); padding: 2px 8px; border-radius: 6px; margin-bottom: 5px; }
+.msg-react-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.msg-react-chip { font-size: 11.5px; background: rgba(120,170,210,0.08); border: 1px solid var(--border-soft); border-radius: 100px; padding: 2px 9px; cursor: pointer; }
+.msg-react-chip.mine { border-color: var(--accent-blue); background: rgba(30,184,232,0.12); }
+.msg-react-add { font-size: 11px; background: none; border: 1px dashed var(--border-strong); border-radius: 100px; padding: 2px 9px; color: var(--text-low); cursor: pointer; }
+.msg-react-add:hover { color: var(--text-hi); border-color: var(--accent-blue); }
+.msg-react-picker { display: flex; gap: 4px; margin-top: 5px; background: var(--bg-card-solid); border: 1px solid var(--border-soft); border-radius: 100px; padding: 4px 6px; width: fit-content; }
+.msg-react-picker.hidden { display: none; }
+.msg-react-picker button { background: none; border: none; font-size: 16px; padding: 2px 4px; cursor: pointer; border-radius: 6px; }
+.msg-react-picker button:hover { background: rgba(120,170,210,0.12); }
+.chat-input-row { display: flex; gap: 10px; padding: 14px 16px; border-top: 1px solid var(--border-soft); align-items: flex-end; }
+.chat-input-row textarea { flex: 1; resize: none; padding: 11px 14px; border-radius: 14px; border: 1px solid var(--border-soft); background: rgba(120,170,210,0.06); color: var(--text-hi); font-size: 14px; max-height: 110px; outline: none; }
+.chat-input-row textarea:focus { border-color: var(--accent-blue); }
+.send-btn { width: 44px; height: 44px; border-radius: 50%; border: none; background: linear-gradient(120deg, var(--accent-blue), var(--accent-teal)); color: #04121e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.send-btn svg { width: 19px; height: 19px; }
+
+/* ---------- Modal ---------- */
+.modal-overlay { position: fixed; inset: 0; background: rgba(4,10,18,0.65); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+.modal-overlay.show { display: flex; }
+.modal-box { width: 100%; max-width: 420px; padding: 26px; max-height: 86vh; overflow-y: auto; }
+.modal-box h3 { font-family: var(--font-display); font-size: 19px; margin: 0 0 16px; }
+.modal-close-row { display: flex; justify-content: flex-end; margin-top: 4px; gap: 10px; }
+
+/* ---------- Profile ---------- */
+.profile-modal-box { max-width: 540px; padding: 34px 38px; }
+.profile-avatar-lg { width: 128px; height: 128px; border-radius: 50%; overflow: hidden; margin: 0 auto 14px; border: 3px solid var(--border-strong); position: relative; }
+.profile-avatar-lg img { width: 100%; height: 100%; object-fit: cover; }
+.profile-edit-fab { position: absolute; bottom: 2px; right: 2px; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-blue); display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-card-solid); }
+.profile-edit-fab svg { width: 15px; height: 15px; color: #04121e; }
+.profile-name-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+.name-tag-inline { font-size: 10.5px; font-weight: 800; padding: 2px 9px; border-radius: 100px; letter-spacing: .2px; }
+.name-tag-inline.owner { background: var(--accent-gold); color: #3a2c00; }
+.name-tag-inline.director { background: var(--accent-blue); color: #04121e; }
+.name-tag-inline.fan { background: var(--accent-teal); color: #04121e; }
+.profile-created { text-align: center; font-size: 12px; color: var(--text-low); margin-bottom: 18px; }
+.field textarea.bio-input { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-soft); background: rgba(120,170,210,0.06); color: var(--text-hi); font-size: 14px; resize: vertical; outline: none; min-height: 70px; }
+.field textarea.bio-input:focus { border-color: var(--accent-blue); }
+
+/* ---------- Edit history ---------- */
+.hist-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 13px; border-radius: 100px; border: 1px solid var(--border-soft); background: rgba(120,170,210,0.06); font-size: 12.5px; font-weight: 700; color: var(--text-mid); }
+.hist-btn:hover { border-color: var(--accent-blue); color: var(--text-hi); }
+.hist-item { padding: 11px 13px; border-radius: 12px; background: rgba(120,170,210,0.06); border: 1px solid var(--border-soft); margin-bottom: 8px; }
+.hist-item-field { font-size: 12.5px; font-weight: 800; color: var(--accent-blue); margin-bottom: 3px; }
+.hist-item-vals { font-size: 12.5px; color: var(--text-mid); line-height: 1.5; word-break: break-word; }
+.hist-item-vals b { color: var(--text-hi); }
+.hist-item-meta { font-size: 10.5px; color: var(--text-low); margin-top: 4px; }
+
+/* ---------- Accounts list (card-based, mobile-friendly) ---------- */
+.acc-list { display: flex; flex-direction: column; gap: 12px; }
+.acc-card { background: var(--bg-card-solid); border: 1px solid var(--border-soft); border-radius: var(--radius-md); padding: 14px 16px; }
+.acc-card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.acc-card-name { font-weight: 800; font-size: 14.5px; }
+.acc-role-chip { font-size: 10.5px; font-weight: 800; letter-spacing: .2px; padding: 3px 10px; border-radius: 100px; background: rgba(120,170,210,0.12); color: var(--text-mid); white-space: nowrap; }
+.acc-card-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--text-mid); margin-bottom: 10px; }
+.acc-card-meta b { color: var(--text-hi); font-weight: 700; }
+.acc-actions { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid var(--border-soft); }
+.acc-action-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 13px; border-radius: 100px; border: 1px solid var(--border-soft); background: rgba(120,170,210,0.06); font-size: 12.5px; font-weight: 700; color: var(--text-mid); }
+.acc-action-btn:hover { border-color: var(--border-strong); color: var(--text-hi); }
+.acc-action-btn.warn { color: var(--accent-gold); border-color: rgba(240,196,25,0.35); }
+.acc-action-btn.warn:hover { background: rgba(240,196,25,0.1); }
+.acc-action-btn.danger { color: #ff9d97; border-color: rgba(232,81,74,0.35); }
+.acc-action-btn.danger:hover { background: rgba(232,81,74,0.1); }
+.mono { font-family: 'SF Mono', Consolas, monospace; font-size: 12px; color: var(--text-mid); }
+
+/* ---------- Warning card (shown to a warned user) ---------- */
+.warn-item { padding: 12px 14px; border-radius: 12px; background: rgba(240,196,25,0.08); border: 1px solid rgba(240,196,25,0.3); }
+.warn-item-text { font-size: 13.5px; line-height: 1.55; margin-bottom: 6px; }
+.warn-item-meta { font-size: 11px; color: var(--text-low); }
+
+.empty-state { text-align: center; padding: 50px 20px; color: var(--text-low); }
+.empty-state svg { width: 46px; height: 46px; margin-bottom: 12px; opacity: .5; }
+.spinner { width: 18px; height: 18px; border: 2.5px solid rgba(4,18,30,0.25); border-top-color: #04121e; border-radius: 50%; animation: spin .7s linear infinite; display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- Settings ---------- */
+.settings-section { border-top: 1px solid var(--border-soft); margin-top: 18px; padding-top: 16px; }
+.settings-section h4 { font-family: var(--font-display); font-size: 14.5px; margin: 0 0 12px; font-weight: 600; color: var(--text-hi); }
+.username-row { display: flex; align-items: center; gap: 8px; }
+.username-chip { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 13px; border-radius: var(--radius-sm); border: 1px solid var(--border-soft); background: rgba(120,170,210,0.06); font-size: 13.5px; color: var(--text-mid); cursor: pointer; }
+.username-chip:hover { border-color: var(--accent-blue); }
+.username-chip .copy-ic { font-size: 12px; color: var(--text-low); }
+.icon-btn-sm { width: 36px; height: 36px; flex-shrink: 0; border-radius: var(--radius-sm); border: 1px solid var(--border-soft); background: rgba(120,170,210,0.06); display: flex; align-items: center; justify-content: center; }
+.icon-btn-sm:hover { border-color: var(--accent-blue); }
+.icon-btn-sm svg { width: 15px; height: 15px; }
+.theme-switch-row { display: flex; gap: 8px; background: rgba(120,170,210,0.07); padding: 5px; border-radius: 100px; }
+.theme-switch-row button { flex: 1; padding: 9px 0; border: none; background: transparent; border-radius: 100px; font-weight: 700; font-size: 13px; color: var(--text-mid); }
+.theme-switch-row button.active { background: var(--bg-card-solid); color: var(--text-hi); box-shadow: 0 3px 10px rgba(0,0,0,0.2); }
+.section-checks { display: flex; flex-direction: column; gap: 10px; }
+.section-check-item { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-mid); }
+.section-check-item input { width: 17px; height: 17px; accent-color: var(--accent-blue); }
+.perk-locked-note { font-size: 12.5px; color: var(--text-low); text-align: center; padding: 14px; background: rgba(120,170,210,0.05); border-radius: var(--radius-sm); border: 1px dashed var(--border-strong); }
+.font-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+.font-opt { padding: 10px 8px; text-align: center; border-radius: var(--radius-sm); border: 1.5px solid var(--border-soft); background: rgba(120,170,210,0.05); font-size: 14px; color: var(--text-hi); }
+.font-opt.active { border-color: var(--accent-blue); background: rgba(30,184,232,0.1); }
+.color-row { display: flex; align-items: center; gap: 10px; }
+.color-row input[type=color] { width: 50px; height: 38px; border-radius: 10px; border: 1px solid var(--border-soft); background: none; padding: 2px; cursor: pointer; }
+.theme-anim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; }
+.theme-anim-opt { position: relative; height: 64px; border-radius: 12px; border: 1.5px solid var(--border-soft); overflow: hidden; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; font-size: 11px; font-weight: 700; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
+.theme-anim-opt.active { border-color: var(--accent-blue); box-shadow: 0 0 0 2px rgba(30,184,232,0.3); }
+.theme-anim-opt.anim-oddiy { background: linear-gradient(145deg, #2a3d52, #1a2938); }
+.theme-anim-opt.anim-gold { background: linear-gradient(120deg, #7a5c00, #f0c419, #7a5c00); background-size: 220% 220%; animation: goldSweep 3.5s linear infinite; }
+.theme-anim-opt.anim-neon { background: #0a0a14; box-shadow: inset 0 0 18px rgba(30,255,220,0.5); animation: neonPulse 1.8s ease-in-out infinite; }
+.theme-anim-opt.anim-liquid { background: radial-gradient(circle at 30% 30%, #1eb8e8, transparent 60%), radial-gradient(circle at 70% 70%, #22c8a0, transparent 60%), #0f2136; background-size: 180% 180%; animation: liquidMove 5s ease-in-out infinite; }
+.theme-anim-opt.anim-cherry { background: radial-gradient(circle at 20% 20%, #ff5c8a, transparent 55%), radial-gradient(circle at 80% 40%, #e8514a, transparent 55%), radial-gradient(circle at 50% 85%, #ff9fb8, transparent 55%), #3a0d1a; animation: cherryFloat 4s ease-in-out infinite; }
+@keyframes goldSweep { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+@keyframes neonPulse { 0%, 100% { box-shadow: inset 0 0 10px rgba(30,255,220,0.35); } 50% { box-shadow: inset 0 0 26px rgba(30,255,220,0.85); } }
+@keyframes liquidMove { 0%, 100% { background-position: 0% 0%, 100% 100%, 0% 0%; } 50% { background-position: 60% 40%, 40% 60%, 0% 0%; } }
+@keyframes cherryFloat { 0%, 100% { background-position: 0% 0%, 0% 0%, 0% 0%; } 50% { background-position: 10% 15%, -10% -10%, 5% -15%; } }
+
+/* ===================== MAXSUS TEMALAR — butun saytni o'zgartiradi ===================== */
+/* Asosiy ranglar CSS o'zgaruvchilar orqali belgilanadi, shuning uchun tugmalar, chegaralar,
+   kartalar, teglar — HAMMASI avtomatik yangi rangga o'tadi. Almashganda silliq animatsiya bilan. */
+html, body, .card, .nav-pill, .btn-primary, .msg-bubble, .msg-react-chip, .acc-card,
+.topbar, .avatar-btn, .role-tag, .msg-tag, .tab-btn, .theme-toggle, .field input, .field select,
+.chat-input-row textarea, .post-card, .modal-box {
+  transition: background-color .55s ease, background-image .55s ease, border-color .55s ease, color .55s ease, box-shadow .55s ease;
+}
+
+body[data-special-theme] {
+  background-color: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse 900px 500px at 15% -10%, var(--theme-glow-1), transparent),
+    radial-gradient(ellipse 700px 600px at 100% 20%, var(--theme-glow-2), transparent),
+    radial-gradient(ellipse 800px 500px at 50% 110%, var(--theme-glow-3), transparent);
+}
+body[data-special-theme]::before,
+body[data-special-theme]::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 2; }
+
+/* ---- GOLD ---- */
+body[data-special-theme="gold"] {
+  --accent-blue: #f0c419; --accent-blue-deep: #b8920a; --accent-teal: #ffdd66; --accent-gold: #fff2b0;
+  --border-soft: rgba(240,196,25,0.22); --border-strong: rgba(240,196,25,0.5);
+  --bg-card: rgba(45,34,0,0.6); --bg-card-solid: #241c04; --bg-deep: #120d00; --bg-mid: #1c1500;
+  --theme-glow-1: rgba(240,196,25,0.22); --theme-glow-2: rgba(255,221,102,0.14); --theme-glow-3: rgba(240,196,25,0.1);
+}
+body[data-special-theme="gold"]::before { background: linear-gradient(115deg, transparent 20%, rgba(255,232,150,0.22) 45%, transparent 70%); background-size: 260% 260%; animation: goldSweep 4s linear infinite; mix-blend-mode: screen; }
+body[data-special-theme="gold"]::after { background-image: radial-gradient(circle, rgba(255,235,160,0.9) 1.5px, transparent 1.6px); background-size: 46px 46px; opacity: .5; animation: sparkleDrift 7s linear infinite; }
+
+/* ---- NEON ---- */
+body[data-special-theme="neon"] {
+  --accent-blue: #0ff0fc; --accent-blue-deep: #0ac2cc; --accent-teal: #ff2bd6; --accent-gold: #faff2b; --accent-red: #ff2b6d;
+  --border-soft: rgba(15,240,252,0.22); --border-strong: rgba(15,240,252,0.6);
+  --bg-card: rgba(5,6,24,0.68); --bg-card-solid: #0a0a1c; --bg-deep: #030308; --bg-mid: #06060f;
+  --theme-glow-1: rgba(15,240,252,0.22); --theme-glow-2: rgba(255,43,214,0.18); --theme-glow-3: rgba(250,255,43,0.08);
+}
+body[data-special-theme="neon"]::before { animation: neonPulseStrong 1.8s ease-in-out infinite; }
+body[data-special-theme="neon"] .card, body[data-special-theme="neon"] .btn-primary { box-shadow: 0 0 18px rgba(15,240,252,0.15); }
+
+/* ---- LIQUID ---- */
+body[data-special-theme="liquid"] {
+  --accent-blue: #1ec8ff; --accent-blue-deep: #0f8fc0; --accent-teal: #1affc7; --accent-gold: #8af7e0;
+  --border-soft: rgba(30,200,255,0.2); --border-strong: rgba(30,200,255,0.5);
+  --bg-card: rgba(6,26,42,0.62); --bg-card-solid: #071d2e; --bg-deep: #03121c; --bg-mid: #061c2a;
+  --theme-glow-1: rgba(30,200,255,0.2); --theme-glow-2: rgba(26,255,199,0.16); --theme-glow-3: rgba(30,200,255,0.1);
+}
+body[data-special-theme="liquid"]::before { opacity: .8; background: radial-gradient(circle at 20% 30%, rgba(30,200,255,0.28), transparent 50%), radial-gradient(circle at 80% 70%, rgba(26,255,199,0.22), transparent 50%), radial-gradient(circle at 50% 50%, rgba(30,200,255,0.14), transparent 60%); background-size: 200% 200%; animation: liquidMove 6s ease-in-out infinite; filter: blur(6px); }
+
+/* ---- CHERRY ---- */
+body[data-special-theme="cherry"] {
+  --accent-blue: #ff5c8a; --accent-blue-deep: #d43a66; --accent-teal: #ff8aa8; --accent-gold: #ffd1dc; --accent-red: #e8324f;
+  --border-soft: rgba(255,92,138,0.22); --border-strong: rgba(255,92,138,0.55);
+  --bg-card: rgba(42,9,19,0.62); --bg-card-solid: #2a0a14; --bg-deep: #160308; --bg-mid: #230510;
+  --theme-glow-1: rgba(255,92,138,0.22); --theme-glow-2: rgba(232,50,79,0.16); --theme-glow-3: rgba(255,209,220,0.12);
+}
+body[data-special-theme="cherry"]::before { opacity: .7; background: radial-gradient(circle at 15% 20%, rgba(255,92,138,0.3), transparent 45%), radial-gradient(circle at 85% 35%, rgba(232,50,79,0.26), transparent 45%), radial-gradient(circle at 50% 90%, rgba(255,209,220,0.22), transparent 45%); animation: cherryFloat 5s ease-in-out infinite; }
+body[data-special-theme="cherry"]::after { background-image: radial-gradient(circle, rgba(255,180,200,0.8) 2px, transparent 2.2px); background-size: 60px 90px; opacity: .4; animation: cherryFall 6s linear infinite; }
+
+@keyframes sparkleDrift { 0% { background-position: 0 0; } 100% { background-position: 46px 92px; } }
+@keyframes cherryFall { 0% { background-position: 0 0; } 100% { background-position: 0 180px; } }
+@keyframes neonPulseStrong {
+  0%, 100% { box-shadow: inset 0 0 90px rgba(15,240,252,0.22), inset 0 0 40px rgba(255,43,214,0.12); }
+  50% { box-shadow: inset 0 0 220px rgba(15,240,252,0.42), inset 0 0 110px rgba(255,43,214,0.3); }
+}
+
+.role-check-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 0; }
+.role-check-item { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; color: var(--text-mid); }
+.role-check-item input { width: 15px; height: 15px; }
+.custom-tag-btn { font-size: 11.5px; }
+.toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border-soft); }
+.toggle-row:last-child { border-bottom: none; }
+.toggle-row-text { flex: 1; }
+.toggle-row-text b { display: block; font-size: 13.5px; color: var(--text-hi); margin-bottom: 2px; }
+.toggle-row-text span { font-size: 12px; color: var(--text-low); }
+.switch { position: relative; width: 44px; height: 25px; flex-shrink: 0; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch .slider { position: absolute; inset: 0; background: rgba(120,170,210,0.25); border-radius: 100px; transition: .2s; cursor: pointer; }
+.switch .slider::before { content: ""; position: absolute; width: 19px; height: 19px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; }
+.switch input:checked + .slider { background: var(--accent-red); }
+.switch input:checked + .slider::before { transform: translateX(19px); }
+.captcha-box { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-soft); background: rgba(120,170,210,0.06); margin-bottom: 15px; }
+.captcha-box input[type=checkbox] { width: 19px; height: 19px; accent-color: var(--accent-blue); }
+.captcha-math { font-weight: 800; font-size: 13.5px; color: var(--text-hi); }
+.captcha-math input { width: 56px; padding: 7px 9px; border-radius: 8px; border: 1px solid var(--border-soft); background: rgba(120,170,210,0.08); color: var(--text-hi); font-size: 13.5px; }
+
+/* ===================== TELEFON ILOVA UI (bottom tab-bar) ===================== */
+:root { --bottom-nav-h: 64px; }
+@media (max-width: 820px) {
+  html, body { height: 100%; overflow-x: hidden; }
+  .topbar {
+    padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px;
+    position: sticky; top: 0; z-index: 50;
+  }
+  .brand-text p { display: none; }
+  .theme-toggle span:not(#themeIcon) { display: none; }
+  .theme-toggle { padding: 9px; }
+
+  /* Nav-pillar endi pastki ilova-uslubidagi tab-bar */
+  .topbar-nav {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    display: flex; flex-wrap: nowrap; justify-content: flex-start;
+    gap: 0; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    background: rgba(10, 22, 40, 0.92); backdrop-filter: blur(22px) saturate(140%);
+    border-top: 1px solid var(--border-soft);
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+  }
+  [data-theme="light"] .topbar-nav { background: rgba(255,255,255,0.92); }
+  .nav-pill {
+    flex-direction: column; gap: 3px; border-radius: 14px; padding: 7px 14px 6px;
+    min-width: 66px; flex-shrink: 0; position: relative; border: 1px solid transparent;
+  }
+  .nav-pill svg { width: 21px; height: 21px; }
+  .nav-pill span.label { display: block !important; font-size: 10px; font-weight: 700; white-space: nowrap; }
+  .nav-pill.active { background: transparent; border-color: transparent; }
+  .nav-pill.active svg { color: var(--accent-blue); }
+  .nav-pill.active span.label { color: var(--accent-blue); }
+  .nav-pill.active::before {
+    content: ""; position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+    width: 22px; height: 3px; border-radius: 100px; background: var(--accent-blue);
+  }
+
+  .auth-panel { padding: 24px 20px; }
+  .page-wrap { padding: 16px 12px calc(var(--bottom-nav-h) + 24px + env(safe-area-inset-bottom, 0px)); }
+  .chat-shell { height: calc(100vh - 230px - env(safe-area-inset-top, 0px)); }
+  .chat-layout { flex-direction: column; }
+  .chat-contacts { width: 100%; height: 96px; flex-direction: row; min-height: unset; }
+  .chat-contacts-head { display: none; }
+  .chat-contacts-list { display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden; width: 100%; }
+  .contact-item { flex-direction: column; width: 72px; flex-shrink: 0; text-align: center; border-bottom: none; padding: 10px 6px; }
+  .contact-info { display: none; }
+  .msg-row { max-width: 90%; }
+  .acc-actions { flex-direction: column; }
+  .acc-action-btn { justify-content: center; width: 100%; }
+  .acc-card-meta { gap: 5px 12px; }
+  .modal-box { padding: 20px 18px; max-height: 88vh; overflow-y: auto; }
+  .modal-close-row { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= AUTH SCREEN ================= -->
+<div class="auth-shell" id="authScreen">
+  <div class="auth-grid">
+    <div class="auth-header">
+      <img class="school-photo" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=200&h=200&fit=crop" alt="Maktab">
+      <h1>Mirzacho'l tumani ixtisoslashtirilgan maktabi</h1>
+      <p>Ta'lim, tarbiya va kelajak — bir joyda</p>
+    </div>
+
+    <div class="card auth-panel">
+      <div class="tab-row">
+        <button class="tab-btn active" id="tabLogin">Kirish</button>
+        <button class="tab-btn" id="tabRegister">Ro'yxatdan o'tish</button>
+      </div>
+
+      <div class="error-msg" id="errBox"></div>
+      <div class="success-msg" id="okBox"></div>
+
+      <!-- LOGIN -->
+      <form id="loginForm">
+        <div class="field">
+          <label>Login (username yoki email)</label>
+          <input type="text" id="loginUsername" placeholder="ali_99 yoki email" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label>Parol</label>
+          <input type="password" id="loginPassword" placeholder="Parolingiz" autocomplete="current-password" required>
+        </div>
+        <div class="captcha-box hidden" id="loginCaptchaBox">
+          <span class="captcha-math"><span class="captcha-math-q">?</span></span>
+          <input type="text" class="captcha-math-input" inputmode="numeric" placeholder="Javob">
+          <span class="text-muted" style="font-size:11px;">Bot emasligingizni tasdiqlang</span>
+        </div>
+        <button type="submit" class="btn-primary" id="loginBtn">Kirish</button>
+        <div class="forgot-row">
+          <button type="button" class="link-btn" id="forgotBtn">Parolni unutdingizmi?</button>
+        </div>
+      </form>
+
+      <!-- REGISTER -->
+      <form id="registerForm" class="hidden">
+        <div class="reg-stopped-banner hidden" id="regStoppedBanner"></div>
+        <div class="device-row">
+          <button type="button" class="device-btn active" data-device="computer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+            Kompyuter
+          </button>
+          <button type="button" class="device-btn" data-device="phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+            Telefon
+          </button>
+        </div>
+
+        <div class="avatar-picker">
+          <div class="avatar-preview" id="avatarPreview">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-low)"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </div>
+          <div>
+            <label class="file-btn">
+              Rasm tanlash
+              <input type="file" id="avatarInput" accept="image/*" style="display:none">
+            </label>
+            <p class="avatar-hint">Ixtiyoriy. Tanlamasangiz, tasodifiy avatar beriladi.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>To'liq ism</label>
+          <input type="text" id="regFullname" placeholder="Masalan: Ali Valiyev" required minlength="5">
+        </div>
+        <div class="field">
+          <label>Username</label>
+          <input type="text" id="regUsername" placeholder="Unikal login (masalan: ali_99)" required>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="regEmail" placeholder="name@example.com" required>
+        </div>
+        <div class="field">
+          <label>Parol</label>
+          <input type="password" id="regPassword" placeholder="Kamida 5 ta belgi" required minlength="5">
+        </div>
+        <div class="field">
+          <label>Yosh</label>
+          <input type="number" id="regAge" placeholder="Masalan: 16" min="1" max="120" required>
+        </div>
+        <div class="field">
+          <label>Rol</label>
+          <select id="regRole">
+            <option value="student">O'quvchi</option>
+            <option value="parent">Ota-ona</option>
+            <option value="guest">Mehmon</option>
+          </select>
+        </div>
+
+        <div class="captcha-box hidden" id="regCaptchaBox">
+          <span class="captcha-math"><span class="captcha-math-q">?</span></span>
+          <input type="text" class="captcha-math-input" inputmode="numeric" placeholder="Javob">
+          <span class="text-muted" style="font-size:11px;">Bot emasligingizni tasdiqlang</span>
+        </div>
+        <button type="submit" class="btn-primary" id="registerBtn">Ro'yxatdan o'tish</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DASHBOARD SCREEN ================= -->
+<div id="dashboardScreen" class="hidden">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=100&h=100&fit=crop" alt=""></div>
+      <div class="brand-text">
+        <h1>Mirzacho'l maktabi</h1>
+        <p>Ixtisoslashtirilgan ta'lim</p>
+      </div>
+    </div>
+
+    <div class="topbar-nav">
+      <button class="nav-pill active" data-view="feed">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+        <span class="label">Yangiliklar</span>
+      </button>
+      <button class="nav-pill" data-view="chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5 8.4 8.4 0 01-4-1L3 20l1.1-3.5A8.4 8.4 0 013 12.5 8.5 8.5 0 0111.5 4h1A8.5 8.5 0 0121 11.5z"/></svg>
+        <span class="label">Asosiy chat</span>
+      </button>
+      <button class="nav-pill" id="directorBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        <span class="label">Direktorga murojaat</span>
+      </button>
+      <button class="nav-pill" id="updatesBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+        <span class="label">Yangilanishlar</span>
+      </button>
+      <button class="nav-pill" id="creatorBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20l9-9-3-3-9 9v3h3z"/></svg>
+        <span class="label">Yaratuvchi</span>
+      </button>
+      <button class="nav-pill hidden" id="accountsBtn" data-view="accounts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        <span class="label">Akkountlar</span>
+      </button>
+      <button class="nav-pill hidden" id="ownerSettingsBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 005 15a1.65 1.65 0 00-1.51-1H3.4a2 2 0 010-4H3.5A1.65 1.65 0 005 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09A1.65 1.65 0 0015 4.6a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019 9a1.65 1.65 0 001.51 1H20.6a2 2 0 010 4h-.09A1.65 1.65 0 0019 15z"/></svg>
+        <span class="label">Owner sozlamalari</span>
+      </button>
+    </div>
+
+    <div class="topbar-right">
+      <button class="theme-toggle hidden" id="installAppBtn" title="Ilova sifatida o'rnatish">
+        <span>⬇️</span><span>O'rnatish</span>
+      </button>
+      <button class="theme-toggle" id="themeToggle">
+        <span id="themeIcon">🌙</span><span id="themeLabel">Dark</span>
+      </button>
+      <button class="avatar-btn" id="profileBtn">
+        <img id="myAvatar" src="" alt="">
+        <span class="role-tag hidden" id="myRoleTag"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="page-wrap" id="feedView">
+    <div class="flex-between" style="margin-bottom:16px;">
+      <div class="section-title" style="margin:0;">📌 Maktab yangiliklari</div>
+      <button class="acc-action-btn hidden" id="newPostBtn" style="color:var(--accent-blue); border-color:rgba(30,184,232,0.35);">➕ Yangi post</button>
+    </div>
+    <div id="postsContainer"></div>
+  </div>
+
+  <div class="page-wrap hidden" id="chatView">
+    <div id="chatBlockedBanner" class="chat-blocked-banner hidden"></div>
+    <div class="chat-layout">
+      <div class="card chat-contacts" id="chatContactsPanel">
+        <div class="chat-contacts-head">👥 Foydalanuvchilar</div>
+        <div class="chat-contacts-list" id="chatContactsList"></div>
+      </div>
+      <div class="card chat-shell">
+        <div class="chat-header-bar hidden" id="chatHeaderBar">
+          <button class="icon-btn-sm" id="chatBackBtn" title="Asosiy chatga qaytish">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <img id="chatHeaderAvatar" src="" alt="">
+          <div class="chat-header-info">
+            <b id="chatHeaderName"></b>
+            <span id="chatHeaderStatus"></span>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-row">
+          <label class="icon-btn-sm chat-img-btn" title="Rasm yuborish">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h12"/><circle cx="9" cy="9" r="2"/><path d="M5 19l5-5 3 3 6-6 2 2"/></svg>
+            <input type="file" id="chatImageInput" accept="image/*" style="display:none">
+          </label>
+          <div id="chatImgPreview" class="chat-img-preview hidden"></div>
+          <textarea id="chatInput" placeholder="Xabar yozing..." rows="1"></textarea>
+          <button class="send-btn" id="chatSendBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrap hidden" id="accountsView">
+    <div class="section-title" id="accountsTitle">🔐 Ro'yxatdan o'tganlar</div>
+    <div class="acc-list" id="accountsBody"></div>
+  </div>
+</div>
+
+<!-- CONFIRM MODAL (universal "ishonchingiz komilmi?" oynasi) -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box card" style="max-width:380px;">
+    <h3 id="confirmTitle">Ishonchingiz komilmi?</h3>
+    <p class="text-muted" id="confirmMessage" style="margin:0 0 22px; line-height:1.55;"></p>
+    <div class="modal-close-row" style="justify-content:flex-end;">
+      <button class="modal-btn" id="confirmCancelBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 6L6 18M6 6l12 12"/></svg>Bekor qilish</button>
+      <button class="btn-primary" id="confirmOkBtn" style="width:auto; padding:10px 22px;">Ha, tasdiqlayman</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT NAME MODAL (owner) -->
+<div class="modal-overlay" id="editNameModal">
+  <div class="modal-box card" style="max-width:380px;">
+    <h3>Ismni tahrirlash</h3>
+    <div class="field">
+      <label>Yangi to'liq ism</label>
+      <input type="text" id="editNameInput" placeholder="To'liq ism">
+    </div>
+    <button class="btn-primary" id="editNameConfirmBtn">Saqlash</button>
+    <div class="modal-close-row"><span style="flex:1"></span><button class="modal-btn" id="editNameCancelBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 6L6 18M6 6l12 12"/></svg>Bekor qilish</button></div>
+  </div>
+</div>
+
+<!-- WARN MODAL (owner sends warning) -->
+<div class="modal-overlay" id="warnModal">
+  <div class="modal-box card" style="max-width:420px;">
+    <h3>Ogohlantirish yuborish</h3>
+    <div class="field">
+      <label>Xabar matni</label>
+      <textarea id="warnTextInput" rows="4" style="width:100%; padding:12px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-soft); background:rgba(120,170,210,0.06); color:var(--text-hi); font-size:14px; resize:vertical; outline:none;" placeholder="Ogohlantirish matnini yozing..."></textarea>
+    </div>
+    <button class="btn-primary" id="warnConfirmBtn">Yuborish</button>
+    <div class="modal-close-row"><span style="flex:1"></span><button class="modal-btn" id="warnCancelBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 6L6 18M6 6l12 12"/></svg>Bekor qilish</button></div>
+  </div>
+</div>
+
+<!-- WARNINGS RECEIVED MODAL (shown to the warned user) -->
+<div class="modal-overlay" id="warningsModal">
+  <div class="modal-box card">
+    <h3>⚠️ Sizga ogohlantirish yuborildi</h3>
+    <div id="warningsList" style="display:flex; flex-direction:column; gap:12px; margin-bottom:18px;"></div>
+    <div class="modal-close-row"><span style="flex:1"></span><button class="btn-primary" id="warningsCloseBtn" style="width:auto; padding:10px 22px;">Tushunarli</button></div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL (avvalgi Profil o'rniga) -->
+<div class="modal-overlay" id="profileModal">
+  <div class="modal-box card profile-modal-box">
+    <h3 style="text-align:center;">⚙️ Sozlamalar</h3>
+    <div class="profile-avatar-lg" id="profileAvatarWrap">
+      <img id="profileAvatarImg" src="" alt="">
+      <label class="profile-edit-fab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+        <input type="file" id="profileAvatarInput" accept="image/*" style="display:none">
+      </label>
+    </div>
+    <div class="profile-name-row">
+      <span class="text-muted" id="profileRoleText"></span>
+      <span class="name-tag-inline hidden" id="profileTagChip"></span>
+    </div>
+    <div class="profile-created" id="profileCreatedText"></div>
+
+    <div class="field">
+      <label>Ism</label>
+      <input type="text" id="profileNameInput">
+    </div>
+
+    <div class="field">
+      <label>Username</label>
+      <div class="username-row">
+        <div class="username-chip" id="usernameChip" title="Nusxalash uchun bosing">
+          <span id="usernameChipText">—</span>
+          <span class="copy-ic">📋</span>
+        </div>
+        <button type="button" class="icon-btn-sm" id="usernameEditBtn" title="Tahrirlash">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+        </button>
+      </div>
+      <input type="text" id="usernameEditInput" class="hidden" style="width:100%; margin-top:8px; padding:11px 13px; border-radius:var(--radius-sm); border:1px solid var(--border-soft); background:rgba(120,170,210,0.06); color:var(--text-hi); font-size:14px; outline:none;" placeholder="Yangi username">
+    </div>
+
+    <div class="field">
+      <label>Bio</label>
+      <textarea class="bio-input" id="profileBioInput" placeholder="O'zingiz haqingizda qisqacha yozing..." maxlength="300"></textarea>
+    </div>
+    <div class="field">
+      <label>Tug'ilgan sana</label>
+      <input type="date" id="profileBirthdateInput">
+    </div>
+
+    <div class="settings-section">
+      <h4>🎨 Mavzu</h4>
+      <div class="theme-switch-row">
+        <button type="button" id="settingsThemeDark">🌙 Dark</button>
+        <button type="button" id="settingsThemeLight">☀️ Light</button>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <h4>📑 Ko'rinadigan bo'limlar</h4>
+      <div class="section-checks" id="sectionChecks">
+        <label class="section-check-item"><input type="checkbox" data-sec="feed" checked> Yangiliklar</label>
+        <label class="section-check-item"><input type="checkbox" data-sec="chat" checked> Asosiy chat</label>
+        <label class="section-check-item"><input type="checkbox" data-sec="director" checked> Direktorga murojaat</label>
+        <label class="section-check-item"><input type="checkbox" data-sec="updates" checked> Yangilanishlar</label>
+        <label class="section-check-item"><input type="checkbox" data-sec="creator" checked> Yaratuvchi</label>
+      </div>
+    </div>
+
+    <div class="settings-section" id="appearancePerkSection">
+      <h4>✨ Maxsus dizayn (Fan / VIP uchun)</h4>
+      <div id="appearancePerkBody"></div>
+    </div>
+
+    <button class="btn-primary" id="profileSaveBtn">Saqlash</button>
+    <div class="modal-close-row">
+      <button class="modal-btn danger" id="logoutBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Chiqish</button>
+      <span style="flex:1"></span>
+      <button class="modal-btn" id="profileCloseBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 6L6 18M6 6l12 12"/></svg>Yopish</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEW POST MODAL (owner / operator) -->
+<div class="modal-overlay" id="newPostModal">
+  <div class="modal-box card">
+    <h3>➕ Yangi post</h3>
+    <div class="field"><label>Sarlavha</label><input type="text" id="newPostTitle" placeholder="Post sarlavhasi"></div>
+    <div class="field"><label>Matn</label><textarea class="bio-input" id="newPostText" style="min-height:110px;" placeholder="Post matni..."></textarea></div>
+    <div class="field">
+      <label>Rasm</label>
+      <label class="file-btn">Rasm tanlash<input type="file" id="newPostPhotoInput" accept="image/*" style="display:none"></label>
+      <div id="newPostPhotoPreview" style="margin-top:8px;"></div>
+    </div>
+    <label class="section-check-item" style="margin-bottom:14px;"><input type="checkbox" id="newPostPinned"> 📌 Tepaga mahkamlash</label>
+    <button class="btn-primary" id="newPostSubmitBtn">Joylash</button>
+    <div class="modal-close-row"><span style="flex:1"></span><button class="modal-btn" id="newPostCancelBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 6L6 18M6 6l12 12"/></svg>Bekor qilish</button></div>
+  </div>
+</div>
+
+<!-- CUSTOM TAG MODAL (owner: foydalanuvchiga maxsus teg yaratish) -->
+<div class="modal-overlay" id="customTagModal">
+  <div class="modal-box card" style="max-width:380px;">
+    <h3>🏷️ Maxsus teg berish</h3>
+    <div class="field"><label>Teg nomi</label><input type="text" id="customTagNameInput" placeholder="Masalan: Faxriy a'zo" maxlength="18"></div>
+    <div class="field">
+      <label>Teg rangi</label>
+      <div class="color-row"><input type="color" id="customTagColorInput" value="#1eb8e8"><span class="text-muted">Fon rangi</span></div>
+    </div>
+    <button class="btn-primary" id="customTagSaveBtn">Saqlash</button>
+    <div class="modal-close-row"><span style="flex:1"></span><button class="modal-btn" id="customTagCancelBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 6L6 18M6 6l12 12"/></svg>Bekor qilish</button></div>
+  </div>
+</div>
+
+<!-- OWNER SETTINGS MODAL -->
+<div class="modal-overlay" id="ownerSettingsModal">
+  <div class="modal-box card" style="max-width:520px;">
+    <h3>🛡️ Owner sozlamalari</h3>
+
+    <div class="toggle-row">
+      <div class="toggle-row-text"><b>Asosiy chatni blocklash</b><span>Oddiy foydalanuvchilar yoza olmaydi. Owner va direktor erkin yoza oladi.</span></div>
+      <label class="switch"><input type="checkbox" id="toggleChatBlock"><span class="slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-row-text"><b>Registratsiyani to'xtatish</b><span>Yangi ro'yxatdan o'tish butunlay to'xtatiladi. Mavjud foydalanuvchilar kira oladi.</span></div>
+      <label class="switch"><input type="checkbox" id="toggleRegStop"><span class="slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-row-text"><b>reCAPTCHA (bot tekshiruvi)</b><span>Kirish va ro'yxatdan o'tishda oddiy bot-tekshiruvi so'raladi.</span></div>
+      <label class="switch"><input type="checkbox" id="toggleRecaptcha"><span class="slider"></span></label>
+    </div>
+
+    <div class="settings-section">
+      <h4>✨ Owner uchun ham maxsus dizayn (Fan/VIP sozlamalari)</h4>
+      <div id="ownerAppearanceBody"></div>
+    </div>
+
+    <div class="modal-close-row"><span style="flex:1"></span><button class="modal-btn" id="ownerSettingsCloseBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 6L6 18M6 6l12 12"/></svg>Yopish</button></div>
+  </div>
+</div>
+
+<!-- EDIT HISTORY MODAL (owner/direktor uchun, akkountlar bo'limida) -->
+<div class="modal-overlay" id="historyModal">
+  <div class="modal-box card">
+    <h3 id="historyModalTitle">Tahrirlar tarixi</h3>
+    <div id="historyList" style="max-height:50vh; overflow-y:auto;"></div>
+    <div class="modal-close-row"><span style="flex:1"></span><button class="modal-btn" id="historyCloseBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 6L6 18M6 6l12 12"/></svg>Yopish</button></div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getDatabase, ref, set, get, push, update, remove,
+  onValue, query, orderByChild, limitToLast, onDisconnect, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+/* ===================== FIREBASE CONFIG =====================
+   MUHIM: "databaseURL" ni Firebase Console > Realtime Database
+   sahifasi tepasida ko'rsatilgan HAQIQIY manzilingizga almashtiring!
+   ============================================================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyBrFcSCk2dCJZAkajRVlqaW6YB-WhS9DMI",
+  authDomain: "mirzacholtumanim.firebaseapp.com",
+  databaseURL: "https://mirzacholtumanim-default-rtdb.firebaseio.com",
+  projectId: "mirzacholtumanim",
+  storageBucket: "mirzacholtumanim.firebasestorage.app",
+  messagingSenderId: "854575892347",
+  appId: "1:854575892347:web:269c2ccbd92a8c05ab1fde",
+  measurementId: "G-5HE063RPCS"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// ==== MAXFIY LOGINLAR (kodda saqlangan, xavfsiz emas — faqat demo uchun) ====
+const OWNER_CREDS = { login: "behruzbek", password: "seflerytt" };
+const DIRECTOR_CREDS = { login: "umrzoq", password: "umrzoq1989" };
+
+/* ===================== THEME ===================== */
+function applyTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  const icon = document.getElementById("themeIcon");
+  const label = document.getElementById("themeLabel");
+  if (icon) icon.textContent = t === "dark" ? "🌙" : "☀️";
+  if (label) label.textContent = t === "dark" ? "Dark" : "Light";
+}
+let currentTheme = localStorage.getItem("mm_theme") || "dark";
+applyTheme(currentTheme);
+
+/* ===================== GLOBAL SOZLAMALAR (owner boshqaradi, hammaga ta'sir qiladi) ===================== */
+let globalSettings = { chatBlocked: false, chatBlockedBy: "", registrationStopped: false, registrationStoppedBy: "", recaptchaEnabled: false };
+function listenGlobalSettings() {
+  onValue(ref(db, "settings/global"), (snap) => {
+    globalSettings = snap.exists() ? Object.assign({ chatBlocked: false, registrationStopped: false, recaptchaEnabled: false }, snap.val()) : globalSettings;
+    applyGlobalSettingsUI();
+  }, (err) => console.error("Global sozlamalarni o'qishda xato:", err));
+}
+function applyGlobalSettingsUI() {
+  // Chat blok banneri
+  const banner = document.getElementById("chatBlockedBanner");
+  const staff = !!session && (session.role === "owner" || session.role === "director");
+  if (banner) {
+    if (globalSettings.chatBlocked && !staff) {
+      banner.textContent = `🚫 Asosiy chat ${globalSettings.chatBlockedBy || "Administratsiya"} tomonidan vaqtinchaga hamma uchun blocklangan.`;
+      banner.classList.remove("hidden");
+    } else banner.classList.add("hidden");
+  }
+  const chatRow = document.querySelector(".chat-input-row");
+  if (chatRow) {
+    const blocked = globalSettings.chatBlocked && !staff;
+    chatRow.querySelectorAll("textarea, button").forEach(el => el.disabled = blocked);
+  }
+  // Registratsiya banneri
+  const regBanner = document.getElementById("regStoppedBanner");
+  if (regBanner) {
+    if (globalSettings.registrationStopped) {
+      regBanner.textContent = `🚫 Serverga registratsiya qilish ${globalSettings.registrationStoppedBy || "Owner"} tomonidan vaqtinchaga to'xtatildi.`;
+      regBanner.classList.remove("hidden");
+      const rb = document.getElementById("registerBtn"); if (rb) rb.disabled = true;
+    } else {
+      regBanner.classList.add("hidden");
+      const rb = document.getElementById("registerBtn"); if (rb) rb.disabled = false;
+    }
+  }
+  // Owner settings modal toggles (agar ochiq bo'lsa, sync)
+  const t1 = document.getElementById("toggleChatBlock"); if (t1) t1.checked = !!globalSettings.chatBlocked;
+  const t2 = document.getElementById("toggleRegStop"); if (t2) t2.checked = !!globalSettings.registrationStopped;
+  const t3 = document.getElementById("toggleRecaptcha"); if (t3) t3.checked = !!globalSettings.recaptchaEnabled;
+  // Captcha ko'rsatish/yashirish
+  document.querySelectorAll(".captcha-box").forEach(box => box.classList.toggle("hidden", !globalSettings.recaptchaEnabled));
+}
+
+/* ===================== ODDIY BOT-TEKSHIRUVI (haqiqiy Google reCAPTCHA kaliti bo'lmagani uchun) ===================== */
+function setupCaptcha(boxId) {
+  const box = document.getElementById(boxId);
+  if (!box) return;
+  const a = Math.floor(Math.random() * 8) + 1, b = Math.floor(Math.random() * 8) + 1;
+  box.dataset.answer = String(a + b);
+  box.querySelector(".captcha-math-q").textContent = `${a} + ${b} = ?`;
+  box.querySelector(".captcha-math-input").value = "";
+}
+function captchaOk(boxId) {
+  if (!globalSettings.recaptchaEnabled) return true;
+  const box = document.getElementById(boxId);
+  if (!box) return true;
+  const val = box.querySelector(".captcha-math-input").value.trim();
+  return val !== "" && val === box.dataset.answer;
+}
+
+/* ===================== FANSIY FONTLAR VA MAXSUS TEMALAR (Fan / VIP / Owner) ===================== */
+const FANCY_FONTS = [
+  { id: "default", label: "Oddiy", family: "var(--font-body)" },
+  { id: "pacifico", label: "Pacifico", family: "'Pacifico', cursive" },
+  { id: "marker", label: "Marker", family: "'Permanent Marker', cursive" },
+  { id: "vibes", label: "Great Vibes", family: "'Great Vibes', cursive" },
+  { id: "bungee", label: "Bungee", family: "'Bungee', cursive" },
+  { id: "orbitron", label: "Orbitron", family: "'Orbitron', sans-serif" },
+  { id: "caveat", label: "Caveat", family: "'Caveat', cursive" },
+  { id: "righteous", label: "Righteous", family: "'Righteous', cursive" },
+  { id: "lobster", label: "Lobster", family: "'Lobster', cursive" },
+  { id: "press", label: "Press Start", family: "'Press Start 2P', monospace" },
+  { id: "dancing", label: "Dancing", family: "'Dancing Script', cursive" }
+];
+const SPECIAL_THEMES = [
+  { id: "oddiy", label: "Oddiy" },
+  { id: "cherry", label: "Cherry" },
+  { id: "neon", label: "Neon" },
+  { id: "liquid", label: "Liquid" },
+  { id: "gold", label: "Gold" }
+];
+function fontById(id) { return FANCY_FONTS.find(f => f.id === id) || FANCY_FONTS[0]; }
+
+function hasAppearancePerk(s) {
+  s = s || session;
+  if (!s) return false;
+  if (s.role === "owner") return true;
+  if (s.tag === "Fan") return true;
+  if (s.customRoles && s.customRoles.vip) return true;
+  return false;
+}
+
+function applyPersonalAppearance() {
+  if (!session) return;
+  const prefKey = "mm_appearance_" + session.uid;
+  let pref = {};
+  try { pref = JSON.parse(localStorage.getItem(prefKey)) || {}; } catch (e) { pref = {}; }
+  document.body.style.setProperty("--user-bg-img", pref.bgImage ? `url(${pref.bgImage})` : "none");
+  if (pref.bgImage) {
+    document.body.style.backgroundImage = `linear-gradient(rgba(5,12,22,0.72), rgba(5,12,22,0.72)), url(${pref.bgImage})`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundAttachment = "fixed";
+  } else {
+    document.body.style.backgroundImage = "";
+    document.body.style.backgroundAttachment = "";
+  }
+  if (pref.specialTheme && pref.specialTheme !== "oddiy") document.body.setAttribute("data-special-theme", pref.specialTheme);
+  else document.body.removeAttribute("data-special-theme");
+
+  let music = document.getElementById("bgMusicPlayer");
+  if (pref.bgMusic) {
+    if (!music) {
+      music = document.createElement("audio");
+      music.id = "bgMusicPlayer"; music.loop = true; music.volume = 0.35; music.style.display = "none";
+      document.body.appendChild(music);
+    }
+    if (music.src !== pref.bgMusic) music.src = pref.bgMusic;
+    if (music.paused) music.play().catch(() => {
+      // Brauzer avtomatik ijroni bloklagan bo'lishi mumkin — birinchi marta sahifada bosilganda ijro boshlanadi.
+      const resume = () => { music.play().catch(() => {}); document.removeEventListener("click", resume); };
+      document.addEventListener("click", resume, { once: true });
+    });
+  } else if (music) { music.pause(); music.remove(); }
+
+  session.nameFont = pref.nameFont || "default";
+  session.nameColor = pref.nameColor || "";
+}
+
+function renderAppearancePerkUI(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  if (!hasAppearancePerk()) {
+    el.innerHTML = `<div class="perk-locked-note">🔒 Bu bo'lim faqat "Fan" tegini olgan yoki VIP foydalanuvchilar uchun ochiq. Chatda 10 daqiqa faol bo'lsangiz avtomatik ochiladi.</div>`;
+    return;
+  }
+  const prefKey = "mm_appearance_" + session.uid;
+  let pref = {};
+  try { pref = JSON.parse(localStorage.getItem(prefKey)) || {}; } catch (e) { pref = {}; }
+
+  el.innerHTML = `
+    <div class="field">
+      <label>🖼️ Orqa fon rasmi</label>
+      <label class="file-btn">Rasm tanlash<input type="file" class="perk-bg-input" accept="image/*" style="display:none"></label>
+      <p class="avatar-hint">${pref.bgImage ? "✅ Rasm o'rnatilgan — faqat shu qurilmangizda saqlanadi." : "Faqat shu qurilmangizda saqlanadi."}</p>
+      ${pref.bgImage ? `<button type="button" class="perk-remove-btn" id="removeBgImageBtn">🗑️ Orqa fon rasmi, o'chirish</button>` : ``}
+    </div>
+    <div class="field">
+      <label>🎵 Orqa fon musiqasi</label>
+      <label class="file-btn">Audio tanlash<input type="file" class="perk-music-input" accept="audio/*" style="display:none"></label>
+      <p class="avatar-hint">${pref.bgMusic ? "✅ Musiqa yuklangan va doimiy ijro etiladi" : "Hozircha musiqa yo'q"}</p>
+      ${pref.bgMusic ? `<button type="button" class="perk-remove-btn" id="removeBgMusicBtn">🗑️ Orqa fon musiqasi, o'chirish</button>` : ``}
+    </div>
+    <div class="field">
+      <label>🔤 Ismingiz uchun shrift</label>
+      <div class="font-grid perk-font-grid">
+        ${FANCY_FONTS.map(f => `<button type="button" class="font-opt ${pref.nameFont === f.id ? "active" : ""}" data-font="${f.id}" style="font-family:${f.family}">${f.label}</button>`).join("")}
+      </div>
+      <div class="color-row">
+        <input type="color" class="perk-name-color" value="${pref.nameColor || "#1eb8e8"}">
+        <span class="text-muted">Ism rangi</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>🎭 Maxsus animatsiyali tema</label>
+      <div class="theme-anim-grid">
+        ${SPECIAL_THEMES.map(t => `<button type="button" class="theme-anim-opt anim-${t.id} ${pref.specialTheme === t.id || (!pref.specialTheme && t.id === "oddiy") ? "active" : ""}" data-theme="${t.id}">${t.label}</button>`).join("")}
+      </div>
+    </div>
+  `;
+
+  el.querySelector(".perk-bg-input").addEventListener("change", (e) => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => { pref.bgImage = ev.target.result; localStorage.setItem(prefKey, JSON.stringify(pref)); applyPersonalAppearance(); };
+    reader.readAsDataURL(file);
+  });
+  el.querySelector(".perk-music-input").addEventListener("change", (e) => {
+    const file = e.target.files[0]; if (!file) return;
+    if (file.size > 4.5 * 1024 * 1024) { alert("Audio fayl 4.5MB dan kichik bo'lishi kerak."); return; }
+    const reader = new FileReader();
+    reader.onload = (ev) => { pref.bgMusic = ev.target.result; localStorage.setItem(prefKey, JSON.stringify(pref)); applyPersonalAppearance(); renderAppearancePerkUI(containerId); };
+    reader.readAsDataURL(file);
+  });
+  const rmBg = el.querySelector("#removeBgImageBtn");
+  if (rmBg) rmBg.addEventListener("click", () => {
+    delete pref.bgImage; localStorage.setItem(prefKey, JSON.stringify(pref));
+    applyPersonalAppearance(); renderAppearancePerkUI(containerId);
+  });
+  const rmMusic = el.querySelector("#removeBgMusicBtn");
+  if (rmMusic) rmMusic.addEventListener("click", () => {
+    delete pref.bgMusic; localStorage.setItem(prefKey, JSON.stringify(pref));
+    applyPersonalAppearance(); renderAppearancePerkUI(containerId);
+  });
+  el.querySelectorAll(".font-opt").forEach(btn => btn.addEventListener("click", () => {
+    pref.nameFont = btn.dataset.font;
+    localStorage.setItem(prefKey, JSON.stringify(pref));
+    el.querySelectorAll(".font-opt").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    applyPersonalAppearance();
+  }));
+  el.querySelector(".perk-name-color").addEventListener("input", (e) => {
+    pref.nameColor = e.target.value;
+    localStorage.setItem(prefKey, JSON.stringify(pref));
+    applyPersonalAppearance();
+  });
+  el.querySelectorAll(".theme-anim-opt").forEach(btn => btn.addEventListener("click", () => {
+    pref.specialTheme = btn.dataset.theme;
+    localStorage.setItem(prefKey, JSON.stringify(pref));
+    el.querySelectorAll(".theme-anim-opt").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    applyPersonalAppearance();
+  }));
+}
+
+/* ===================== BO'LIMLARNI KO'RSATISH/YASHIRISH (shaxsiy sozlama) ===================== */
+const SECTION_NAV_MAP = { feed: '.nav-pill[data-view="feed"]', chat: '.nav-pill[data-view="chat"]', director: "#directorBtn", updates: "#updatesBtn", creator: "#creatorBtn" };
+function applySectionVisibility() {
+  if (!session) return;
+  let prefs = {};
+  try { prefs = JSON.parse(localStorage.getItem("mm_sections_" + session.uid)) || {}; } catch (e) { prefs = {}; }
+  Object.entries(SECTION_NAV_MAP).forEach(([key, sel]) => {
+    const node = document.querySelector(sel);
+    if (!node) return;
+    const visible = prefs[key] !== false;
+    node.classList.toggle("hidden", !visible);
+  });
+}
+function loadSectionCheckboxesUI() {
+  if (!session) return;
+  let prefs = {};
+  try { prefs = JSON.parse(localStorage.getItem("mm_sections_" + session.uid)) || {}; } catch (e) { prefs = {}; }
+  document.querySelectorAll("#sectionChecks input[data-sec]").forEach(cb => {
+    cb.checked = prefs[cb.dataset.sec] !== false;
+  });
+}
+document.getElementById("sectionChecks") && document.getElementById("sectionChecks").addEventListener("change", (e) => {
+  const cb = e.target.closest("input[data-sec]");
+  if (!cb || !session) return;
+  let prefs = {};
+  try { prefs = JSON.parse(localStorage.getItem("mm_sections_" + session.uid)) || {}; } catch (err) { prefs = {}; }
+  prefs[cb.dataset.sec] = cb.checked;
+  localStorage.setItem("mm_sections_" + session.uid, JSON.stringify(prefs));
+  applySectionVisibility();
+});
+
+/* ===================== RANDOM AVATARS ===================== */
+const RANDOM_AVATARS = [
+  "https://api.dicebear.com/7.x/avataaars/svg?seed=1",
+  "https://api.dicebear.com/7.x/avataaars/svg?seed=2",
+  "https://api.dicebear.com/7.x/avataaars/svg?seed=3",
+  "https://api.dicebear.com/7.x/avataaars/svg?seed=4",
+  "https://api.dicebear.com/7.x/avataaars/svg?seed=5",
+  "https://api.dicebear.com/7.x/avataaars/svg?seed=6",
+  "https://api.dicebear.com/7.x/avataaars/svg?seed=7",
+  "https://api.dicebear.com/7.x/avataaars/svg?seed=8",
+];
+function randomAvatar() { return RANDOM_AVATARS[Math.floor(Math.random() * RANDOM_AVATARS.length)]; }
+
+/* ===================== SCREEN SWITCH ===================== */
+const authScreen = document.getElementById("authScreen");
+const dashboardScreen = document.getElementById("dashboardScreen");
+
+function showAuthScreen() {
+  authScreen.classList.remove("hidden");
+  dashboardScreen.classList.add("hidden");
+}
+function showDashboardScreen() {
+  authScreen.classList.add("hidden");
+  dashboardScreen.classList.remove("hidden");
+  renderMyAvatar();
+  loadPosts();
+  listenChat();
+  checkWarnings();
+  startFanTagTimer();
+  applySectionVisibility();
+  applyPersonalAppearance();
+  applyGlobalSettingsUI();
+  setupPresence();
+  const canPost = !!session && (session.role === "owner" || (session.customRoles && session.customRoles.operator));
+  document.getElementById("newPostBtn").classList.toggle("hidden", !canPost);
+  document.getElementById("ownerSettingsBtn").classList.toggle("hidden", !(session && session.role === "owner"));
+}
+
+/* ===================== "FAN" TEGI (10 daqiqa onlayn bo'lsa avtomatik beriladi) ===================== */
+const FAN_TAG_MS = 10 * 60 * 1000;
+let fanTagTimer = null;
+function startFanTagTimer() {
+  if (!session) return;
+  if (session.uid && (session.uid.startsWith("owner_") || session.uid.startsWith("director_"))) return;
+  if (session.tag === "Fan") return;
+  if (fanTagTimer) return;
+  fanTagTimer = setTimeout(async () => {
+    fanTagTimer = null;
+    if (!session || session.tag === "Fan") return;
+    session.tag = "Fan";
+    localStorage.setItem("mm_session", JSON.stringify(session));
+    renderMyAvatar();
+    try { await update(ref(db, "users/" + session.uid), { tag: "Fan" }); } catch (err) { console.error("Fan tegini saqlashda xato:", err); }
+  }, FAN_TAG_MS);
+}
+
+let session = null;
+try { session = JSON.parse(localStorage.getItem("mm_session")); } catch (e) { session = null; }
+
+/* ===================== AUTH TABS ===================== */
+const tabLogin = document.getElementById("tabLogin");
+const tabRegister = document.getElementById("tabRegister");
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
+const errBox = document.getElementById("errBox");
+const okBox = document.getElementById("okBox");
+
+function showErr(msg) { okBox.classList.remove("show"); errBox.textContent = msg; errBox.classList.add("show"); }
+function showOk(msg) { errBox.classList.remove("show"); okBox.textContent = msg; okBox.classList.add("show"); }
+function clearMsgs() { errBox.classList.remove("show"); okBox.classList.remove("show"); }
+
+tabLogin.addEventListener("click", () => {
+  tabLogin.classList.add("active"); tabRegister.classList.remove("active");
+  loginForm.classList.remove("hidden"); registerForm.classList.add("hidden");
+  clearMsgs(); setupCaptcha("loginCaptchaBox");
+});
+tabRegister.addEventListener("click", () => {
+  tabRegister.classList.add("active"); tabLogin.classList.remove("active");
+  registerForm.classList.remove("hidden"); loginForm.classList.add("hidden");
+  clearMsgs(); setupCaptcha("regCaptchaBox");
+});
+setupCaptcha("loginCaptchaBox");
+setupCaptcha("regCaptchaBox");
+listenGlobalSettings();
+
+/* ===================== DEVICE TOGGLE ===================== */
+let selectedDevice = "computer";
+document.querySelectorAll(".device-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".device-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    selectedDevice = btn.dataset.device;
+  });
+});
+
+/* ===================== AVATAR PICKER (register) ===================== */
+let avatarDataUrl = "";
+const avatarInput = document.getElementById("avatarInput");
+const avatarPreview = document.getElementById("avatarPreview");
+avatarInput.addEventListener("change", () => {
+  const file = avatarInput.files[0];
+  if (!file) return;
+  if (file.size > 900 * 1024) { showErr("Rasm hajmi 900KB dan kichik bo'lishi kerak."); avatarInput.value = ""; return; }
+  const reader = new FileReader();
+  reader.onload = (e) => { avatarDataUrl = e.target.result; avatarPreview.innerHTML = `<img src="${avatarDataUrl}" alt="avatar">`; };
+  reader.readAsDataURL(file);
+});
+
+/* ===================== HELPERS ===================== */
+function slugId(username) { return username.trim().toLowerCase().replace(/[^a-z0-9_]/g, ""); }
+
+async function findUserByLogin(loginRaw) {
+  const usersSnap = await get(ref(db, "users"));
+  if (!usersSnap.exists()) return null;
+  const users = usersSnap.val();
+  const loginLower = loginRaw.trim().toLowerCase();
+  for (const uid in users) {
+    const u = users[uid];
+    if ((u.username && u.username.toLowerCase() === loginLower) || (u.email && u.email.toLowerCase() === loginLower)) {
+      return { uid, ...u };
+    }
+  }
+  return null;
+}
+
+function escapeHtml(str) { const d = document.createElement("div"); d.textContent = str; return d.innerHTML; }
+
+/* ===================== REGISTER ===================== */
+registerForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  clearMsgs();
+
+  if (globalSettings.registrationStopped) { showErr("Registratsiya hozircha to'xtatilgan."); return; }
+  if (!captchaOk("regCaptchaBox")) { showErr("Bot-tekshiruvi javobi noto'g'ri. Qaytadan urinib ko'ring."); setupCaptcha("regCaptchaBox"); return; }
+
+  const fullname = document.getElementById("regFullname").value.trim();
+  const username = document.getElementById("regUsername").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
+  const password = document.getElementById("regPassword").value;
+  const ageVal = document.getElementById("regAge").value;
+  const role = document.getElementById("regRole").value;
+  const btn = document.getElementById("registerBtn");
+
+  if (!fullname || !username || !email || !password || !ageVal) { showErr("Iltimos, barcha maydonlarni to'ldiring."); return; }
+  if (fullname.length <= 4) { showErr("Ism 4 harfdan ko'p bo'lishi kerak (kamida 5 ta belgi)."); return; }
+  if (password.length <= 4) { showErr("Parol 4 harfdan ko'p bo'lishi kerak (kamida 5 ta belgi)."); return; }
+  const age = parseInt(ageVal, 10);
+  if (!age || age < 1 || age > 120) { showErr("Yoshni to'g'ri kiriting."); return; }
+
+  const uid = slugId(username);
+  if (!uid) { showErr("Username noto'g'ri formatda. Faqat harf, raqam va _ ishlating."); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>';
+
+  try {
+    const existing = await get(ref(db, "users/" + uid));
+    if (existing.exists()) {
+      showErr("Bu username allaqachon band. Boshqasini tanlang.");
+      btn.disabled = false; btn.textContent = "Ro'yxatdan o'tish";
+      return;
+    }
+
+    const emailOwner = await findUserByLogin(email);
+    if (emailOwner) {
+      showErr("Bu email bilan allaqachon hisob mavjud. Iltimos, kirish (Login) bo'limidan foydalaning yoki boshqa email kiriting.");
+      btn.disabled = false; btn.textContent = "Ro'yxatdan o'tish";
+      return;
+    }
+
+    const avatar = avatarDataUrl || randomAvatar();
+
+    await set(ref(db, "users/" + uid), {
+      fullname, username, email, password, role, avatar, age,
+      bio: "", birthdate: "", tag: null,
+      device: selectedDevice, createdAt: Date.now()
+    });
+
+    session = { uid, fullname, username, email, role, avatar, age, bio: "", birthdate: "", tag: null, customRoles: {}, customTagName: "", customTagColor: "" };
+    localStorage.setItem("mm_session", JSON.stringify(session));
+
+    showOk("Ro'yxatdan muvaffaqiyatli o'tdingiz! Yo'naltirilmoqda...");
+    setTimeout(() => { showDashboardScreen(); }, 700);
+
+  } catch (err) {
+    console.error("Registratsiya xatosi:", err);
+    showErr("Xatolik: " + err.message + " (Firebase 'databaseURL' to'g'ri sozlanganini tekshiring)");
+    btn.disabled = false; btn.textContent = "Ro'yxatdan o'tish";
+  }
+});
+
+/* ===================== LOGIN ===================== */
+loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  clearMsgs();
+
+  const loginVal = document.getElementById("loginUsername").value.trim();
+  const passVal = document.getElementById("loginPassword").value;
+  const btn = document.getElementById("loginBtn");
+
+  if (!loginVal || !passVal) { showErr("Login va parolni kiriting."); return; }
+  if (!captchaOk("loginCaptchaBox")) { showErr("Bot-tekshiruvi javobi noto'g'ri. Qaytadan urinib ko'ring."); setupCaptcha("loginCaptchaBox"); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>';
+
+  // 1) Owner / Director — oddiy login maydonidan
+  const loginLower = loginVal.toLowerCase();
+  if (loginLower === OWNER_CREDS.login && passVal === OWNER_CREDS.password) {
+    session = {
+      uid: "owner_behruzbek", fullname: "Behruzbek Sodiqov", username: "behruzbek",
+      email: "owner@mirzacholtumanim.uz", role: "owner",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=owner", tag: "Owner"
+    };
+    localStorage.setItem("mm_session", JSON.stringify(session));
+    showDashboardScreen();
+    return;
+  }
+  if (loginLower === DIRECTOR_CREDS.login && passVal === DIRECTOR_CREDS.password) {
+    session = {
+      uid: "director_umrzoq", fullname: "Tovbayev Umrzoq Abdujabbor o'g'li", username: "umrzoq",
+      email: "director@mirzacholtumanim.uz", role: "director",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=director", tag: "Direktor"
+    };
+    localStorage.setItem("mm_session", JSON.stringify(session));
+    showDashboardScreen();
+    return;
+  }
+
+  // 2) Oddiy foydalanuvchi
+  try {
+    const user = await findUserByLogin(loginVal);
+    if (!user || user.password !== passVal) {
+      showErr("Login yoki parol noto'g'ri.");
+      btn.disabled = false; btn.textContent = "Kirish";
+      return;
+    }
+    session = {
+      uid: user.uid, fullname: user.fullname, username: user.username, email: user.email,
+      role: user.role, avatar: user.avatar, age: user.age || null,
+      bio: user.bio || "", birthdate: user.birthdate || "", tag: user.tag || null,
+      createdAt: user.createdAt || null, customRoles: user.customRoles || {},
+      customTagName: user.customTagName || "", customTagColor: user.customTagColor || ""
+    };
+    localStorage.setItem("mm_session", JSON.stringify(session));
+    showDashboardScreen();
+  } catch (err) {
+    console.error("Login xatosi:", err);
+    showErr("Xatolik: " + err.message + " (Firebase 'databaseURL' to'g'ri sozlanganini tekshiring)");
+    btn.disabled = false; btn.textContent = "Kirish";
+  }
+});
+
+document.getElementById("forgotBtn").addEventListener("click", () => {
+  showOk("Parolni tiklash uchun hozircha qayta ro'yxatdan o'ting yoki maktab ma'muriyatiga murojaat qiling.");
+  setTimeout(() => tabRegister.click(), 1200);
+});
+
+/* ===================== DASHBOARD: TOPBAR ===================== */
+function renderMyAvatar() {
+  if (!session) return;
+  const img = document.getElementById("myAvatar");
+  if (session.avatar) { img.src = session.avatar; img.style.display = "block"; } else { img.style.display = "none"; }
+  const tagEl = document.getElementById("myRoleTag");
+  if (session.tag === "Owner") { tagEl.textContent = "Owner"; tagEl.className = "role-tag owner"; tagEl.classList.remove("hidden"); }
+  else if (session.tag === "Direktor") { tagEl.textContent = "Direktor"; tagEl.className = "role-tag director"; tagEl.classList.remove("hidden"); }
+  else if (session.tag === "Fan") { tagEl.textContent = "Fan"; tagEl.className = "role-tag fan"; tagEl.classList.remove("hidden"); }
+  else if (session.customRoles && session.customRoles.admin) { tagEl.textContent = "Admin"; tagEl.className = "role-tag admin"; tagEl.classList.remove("hidden"); }
+  else if (session.customRoles && session.customRoles.vip) { tagEl.textContent = "VIP"; tagEl.className = "role-tag vip"; tagEl.classList.remove("hidden"); }
+  else if (session.customRoles && session.customRoles.operator) { tagEl.textContent = "Operator"; tagEl.className = "role-tag operator"; tagEl.classList.remove("hidden"); }
+  else { tagEl.classList.add("hidden"); }
+  if (session.role === "owner" || session.role === "director") document.getElementById("accountsBtn").classList.remove("hidden");
+}
+
+function canViewAccounts() { return !!session && (session.role === "owner" || session.role === "director"); }
+function canManageAccounts() { return !!session && session.role === "owner"; }
+
+const views = { feed: "feedView", chat: "chatView", accounts: "accountsView" };
+document.querySelectorAll(".nav-pill[data-view]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (btn.id === "accountsBtn" && !canViewAccounts()) return;
+    document.querySelectorAll(".nav-pill[data-view]").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    Object.values(views).forEach(id => document.getElementById(id).classList.add("hidden"));
+    document.getElementById(views[btn.dataset.view]).classList.remove("hidden");
+    if (btn.dataset.view === "chat") setTimeout(() => { const box = document.getElementById("chatMessages"); box.scrollTop = box.scrollHeight; }, 60);
+    if (btn.dataset.view === "accounts") loadAccounts();
+  });
+});
+
+document.getElementById("themeToggle").addEventListener("click", () => {
+  currentTheme = currentTheme === "dark" ? "light" : "dark";
+  localStorage.setItem("mm_theme", currentTheme);
+  applyTheme(currentTheme);
+});
+
+document.getElementById("updatesBtn").addEventListener("click", () => window.open("https://mirzacholimyangilanish.netlify.app", "_blank"));
+document.getElementById("creatorBtn").addEventListener("click", () => window.open("https://t.me/Sadikov_B8", "_blank"));
+document.getElementById("directorBtn").addEventListener("click", () => window.open("https://t.me/umrzak89", "_blank"));
+
+/* ===================== POSTS (FEED) ===================== */
+const SEED_POSTS = [
+  { id: "seed1", title: "Mirzacho'l tumani ixtisoslashtirilgan maktabiga direktor tayinlandi",
+    text: "Ixtisoslashtirilgan ta'lim agentligi direktorining tegishli buyrug'iga muvofiq, Tovbayev Umrzak Abdujabbor o'g'li Mirzacho'l tumani ixtisoslashtirilgan maktabi direktori lavozimiga tayinlandi.\n\nTovbayev Umrzak Abdujabbor o'g'li mazkur lavozimga tayinlangunga qadar Mirzacho'l tumani 3-sonli umumiy o'rta ta'lim maktabi direktori lavozimida faoliyat yuritgan.\n\nYangi lavozimda maktab jamoasi bilan hamkorlikda ta'lim sifatini yanada yuksaltirish, o'quvchilar uchun zamonaviy va munosib shart-sharoitlar yaratish, ta'lim-tarbiya jarayonini samarali tashkil etish hamda maktabning yuqori natijalarini yanada mustahkamlashga qaratilgan faoliyatni amalga oshirishi kutilmoqda.\n\nTovbayev Umrzak Abdujabbor o'g'lini yangi lavozim bilan muborakbod etib, mas'uliyatli faoliyatida muvaffaqiyatlar, mustahkam sog'lik va yangi yutuqlar tilaymiz! 🇺🇿",
+    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=500&fit=crop", pinned: true, likes: 38, fires: 13, hearts: 4, views: 2224 },
+  { id: "seed2", title: "Maktab o'quv ishlari bo'yicha o'rinbosari tayinlandi",
+    text: "Ixtisoslashtirilgan ta'lim muassasalari agentligi direktorining tavsiyasi va Mirzacho'l tumani ixtisoslashtirilgan maktab direktorining tegishli buyrug'iga muvofiq Turdibayev Urol Shakarovich Mirzacho'l tumani ixtisoslashtirilgan maktab o'quv ishlari bo'yicha o'rinbosari lavozimiga tayinlandi.\n\nMazkur lavozimga tayinlangunga qadar Turdibayev Urol Shakarovich Mirzacho'l tumani Maktabgacha va maktab ta'lim bo'limida bir qator lavozimlarda faoliyat yuritgan.\n\nTurdibayev Urol Shakarovichga yangi lavozim bilan muborakbod etib, mas'uliyatli faoliyatida ulkan muvaffaqiyatlar, mustahkam sog'lik va yangi yutuqlar tilaymiz!",
+    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&h=500&fit=crop", pinned: false, likes: 18, fires: 5, hearts: 3, views: 1211 },
+  { id: "seed3", title: "Tarix fani o'qituvchisi tayinlandi",
+    text: "Erkinov Mehriddin Uchqun o'g'li Mirzacho'l tumani ixtisoslashtirilgan maktabiga tarix fani o'qituvchisi lavozimiga tayinlandi.\n\nUshbu lavozimga tayinlangunga qadar Mirzacho'l tumani 13-sonli umumiy o'rta ta'lim maktabida tarix fani o'qituvchisi sifatida faoliyat yuritgan.\n\nErkinov Mehriddin Uchqun o'g'li tarix fanidan milliy sertifikat hamda 1-malaka toifasiga ega. Pedagogik faoliyati davomida o'quvchilarga tarix fanini chuqur o'rgatish, ularning bilim va dunyoqarashini rivojlantirishga munosib hissa qo'shib kelgan.\n\nErkinov Mehriddin Uchqun o'g'lini jamoamiz safiga qo'shilgani bilan muborakbod etamiz!",
+    photo: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=500&fit=crop", pinned: false, likes: 20, fires: 3, hearts: 1, views: 452 },
+  { id: "seed4", title: "Ingliz tili fani o'qituvchisi tayinlandi",
+    text: "Xoljigitov Jamshid Abduzuxurovich Mirzacho'l tumani ixtisoslashtirilgan maktabiga ingliz tili fani o'qituvchisi lavozimiga tayinlandi.\n\nUshbu lavozimga tayinlangunga qadar Mirzacho'l tumani 5-sonli umumiy o'rta ta'lim maktabida ingliz tili fani o'qituvchisi sifatida faoliyat yuritgan.\n\nXoljigitov Jamshid Abduzuxurovich xalqaro sertifikat va oliy malaka toifasiga ega. U o'zining bilim va tajribasi bilan o'quvchilarning xorijiy tilni puxta egallashiga munosib hissa qo'shib kelgan.",
+    photo: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=500&fit=crop", pinned: false, likes: 14, fires: 0, hearts: 3, views: 461 },
+  { id: "seed5", title: "Kutubxona mudirasi tayinlandi",
+    text: "Mamatova Dilfuza Qo'chqor qizi Mirzacho'l tumani ixtisoslashtirilgan maktabiga kutubxona mudirasi lavozimiga tayinlandi.\n\nU o'z faoliyati davomida kitobxonlik madaniyatini rivojlantirish, o'quvchilarning kitobga bo'lgan qiziqishini oshirish va ta'lim muassasasida ma'naviy-ma'rifiy muhitni yanada boyitishga munosib hissa qo'shib kelmoqda.\n\nMamatova Dilfuza Qo'chqor qizini yangi lavozimi bilan muborakbod etamiz!",
+    photo: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&h=500&fit=crop", pinned: false, likes: 12, fires: 0, hearts: 0, views: 471 }
+];
+
+function renderPost(p) {
+  return `
+    <div class="card post-card" data-post-id="${p.id}">
+      ${p.photo ? `<img class="post-photo" src="${p.photo}" alt="">` : ""}
+      <div class="post-body">
+        <div class="post-pin">📌 TAYINLOV</div>
+        <div class="post-title">${escapeHtml(p.title)}</div>
+        <p class="post-text">${escapeHtml(p.text)}</p>
+        <div class="post-meta">
+          <div class="post-reacts">
+            <span class="react-chip" data-emoji="like" data-post="${p.id}">👍 <span class="cnt">${p.likes || 0}</span></span>
+            <span class="react-chip" data-emoji="fire" data-post="${p.id}">🔥 <span class="cnt">${p.fires || 0}</span></span>
+            <span class="react-chip" data-emoji="heart" data-post="${p.id}">❤️ <span class="cnt">${p.hearts || 0}</span></span>
+          </div>
+          <div class="post-views">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            ${p.views || 0}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function attachReactionHandlers() {
+  document.querySelectorAll(".react-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const postId = chip.dataset.post;
+      const emoji = chip.dataset.emoji;
+      const storageKey = `mm_react_${session.uid}_${postId}`;
+      const already = localStorage.getItem(storageKey);
+      const cntEl = chip.querySelector(".cnt");
+      let cnt = parseInt(cntEl.textContent, 10);
+
+      if (already === emoji) {
+        cnt = Math.max(0, cnt - 1);
+        localStorage.removeItem(storageKey);
+        chip.classList.remove("mine");
+      } else {
+        if (already) {
+          const prevChip = document.querySelector(`.react-chip[data-post="${postId}"][data-emoji="${already}"]`);
+          if (prevChip) {
+            const prevCnt = prevChip.querySelector(".cnt");
+            prevCnt.textContent = Math.max(0, parseInt(prevCnt.textContent, 10) - 1);
+            prevChip.classList.remove("mine");
+          }
+        }
+        cnt += 1;
+        localStorage.setItem(storageKey, emoji);
+        chip.classList.add("mine");
+      }
+      cntEl.textContent = cnt;
+    });
+  });
+}
+
+function loadPosts() {
+  const container = document.getElementById("postsContainer");
+  get(ref(db, "posts")).then(snap => {
+    let posts = [];
+    if (snap.exists()) {
+      const val = snap.val();
+      posts = Object.keys(val).map(k => ({ id: k, ...val[k] }));
+    }
+    if (posts.length === 0) posts = SEED_POSTS;
+    posts.sort((a, b) => (b.pinned === true) - (a.pinned === true));
+    container.innerHTML = posts.map(renderPost).join("");
+    attachReactionHandlers();
+  }).catch((err) => {
+    console.error("Postlarni yuklashda xato:", err);
+    container.innerHTML = SEED_POSTS.map(renderPost).join("");
+    attachReactionHandlers();
+  });
+}
+
+/* ===================== CHAT ===================== */
+const chatMessages = document.getElementById("chatMessages");
+const chatInput = document.getElementById("chatInput");
+const chatSendBtn = document.getElementById("chatSendBtn");
+
+function tagHtml(tag) {
+  if (tag === "Owner") return `<span class="msg-tag owner">Owner</span>`;
+  if (tag === "Direktor") return `<span class="msg-tag director">Direktor</span>`;
+  if (tag === "Fan") return `<span class="msg-tag fan">Fan</span>`;
+  return "";
+}
+function allTagsHtml(m) {
+  let html = tagHtml(m.tag);
+  const r = m.customRoles || {};
+  if (r.vip) html += `<span class="msg-tag vip">VIP</span>`;
+  if (r.admin) html += `<span class="msg-tag admin">Admin</span>`;
+  if (r.operator) html += `<span class="msg-tag operator">Operator</span>`;
+  if (m.customTagName) html += `<span class="msg-tag custom" style="background:${escapeHtml(m.customTagColor || "#1eb8e8")}">${escapeHtml(m.customTagName)}</span>`;
+  return html;
+}
+function msgTextClass(m) {
+  const r = m.customRoles || {};
+  if (m.tag === "Owner") return "tag-owner";
+  if (m.tag === "Direktor") return "tag-director";
+  if (r.admin) return "tag-admin";
+  if (r.vip) return "tag-vip";
+  if (r.operator) return "tag-operator";
+  if (m.tag === "Fan") return "tag-fan";
+  return "";
+}
+function msgNameStyle(m) {
+  if (!m.nameFont || m.nameFont === "default") return m.nameColor ? `color:${escapeHtml(m.nameColor)};` : "";
+  const f = fontById(m.nameFont);
+  return `font-family:${f.family};${m.nameColor ? "color:" + escapeHtml(m.nameColor) + ";" : ""}`;
+}
+const REACTION_EMOJIS = ["👍", "❤️", "😂", "🔥", "😮", "😢"];
+
+function isStaff() { return !!session && (session.role === "owner" || session.role === "director"); }
+
+function renderReactions(msgId, m) {
+  const reactions = m.reactions || {};
+  const counts = {};
+  let myEmoji = null;
+  Object.entries(reactions).forEach(([uid, emoji]) => {
+    counts[emoji] = (counts[emoji] || 0) + 1;
+    if (uid === session.uid) myEmoji = emoji;
+  });
+  const chips = Object.entries(counts).map(([emoji, cnt]) => `
+    <button class="msg-react-chip ${emoji === myEmoji ? "mine" : ""}" data-msg="${msgId}" data-emoji="${emoji}">${emoji} ${cnt}</button>
+  `).join("");
+  const picker = REACTION_EMOJIS.map(e => `<button data-msg="${msgId}" data-emoji="${e}">${e}</button>`).join("");
+  return `
+    <div class="msg-react-row">
+      ${chips}
+      <button class="msg-react-add" data-msg="${msgId}">${myEmoji ? "✏️" : "+ Reaksiya"}</button>
+    </div>
+    <div class="msg-react-picker hidden" data-picker-for="${msgId}">${picker}</div>
+  `;
+}
+
+function renderMessage(msgId, m) {
+  const isMe = m.uid === session.uid;
+  const time = m.timestamp ? new Date(m.timestamp).toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" }) : "";
+  const isPrivate = currentChatMode.type === "private";
+
+  if (m.deleted && !(isStaff() && !isPrivate)) return "";
+
+  const deletedBadge = m.deleted ? `<div class="msg-deleted-badge">🗑️ O'chirilgan xabar (faqat administratsiyaga ko'rinadi)</div>` : "";
+  const delBtn = (isMe && !m.deleted) ? `<button class="msg-del-btn" data-msg="${msgId}" title="O'chirish">🗑️ O'chirish</button>` : "";
+  const imgHtml = m.image ? `<img class="msg-image" src="${m.image}" alt="" onclick="window.open(this.src, '_blank')">` : "";
+  const textHtml = m.text ? `<div class="msg-text ${msgTextClass(m)}">${escapeHtml(m.text)}</div>` : "";
+
+  return `
+    <div class="msg-row ${isMe ? "me" : ""} ${m.deleted ? "msg-deleted" : ""}" data-msg-id="${msgId}">
+      <div class="msg-avatar"><img src="${m.avatar || ""}" alt=""></div>
+      <div style="min-width:0;">
+        <div class="msg-bubble">
+          <div class="msg-name"><span style="${msgNameStyle(m)}">${escapeHtml(m.fullname || "Foydalanuvchi")}</span> ${allTagsHtml(m)}</div>
+          ${deletedBadge}
+          ${imgHtml}
+          ${textHtml}
+        </div>
+        ${!m.deleted ? renderReactions(msgId, m) : ""}
+        <div class="msg-time">${time} ${delBtn}</div>
+      </div>
+    </div>
+  `;
+}
+
+/* ===================== ASOSIY / PRAVITY (shaxsiy) CHAT HOLATI ===================== */
+let currentChatMode = { type: "main" };
+let activeChatUnsub = null;
+function chatKeyFor(a, b) { return [a, b].sort().join("__"); }
+function currentChatBasePath() {
+  return currentChatMode.type === "private" ? "private_chats/" + currentChatMode.chatKey : "chat_main";
+}
+
+function renderChatSnapshot(snap) {
+  if (!snap.exists()) {
+    chatMessages.innerHTML = `<div class="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5 8.4 8.4 0 01-4-1L3 20l1.1-3.5A8.4 8.4 0 013 12.5 8.5 8.5 0 0111.5 4h1A8.5 8.5 0 0121 11.5z"/></svg>
+      <p>Hali xabarlar yo'q. Birinchi bo'lib yozing!</p>
+    </div>`;
+    return;
+  }
+  const val = snap.val();
+  const entries = Object.entries(val).sort((a, b) => (a[1].timestamp || 0) - (b[1].timestamp || 0));
+  chatMessages.innerHTML = entries.map(([id, m]) => renderMessage(id, m)).join("");
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function switchChatListener() {
+  if (activeChatUnsub) { try { activeChatUnsub(); } catch (e) {} activeChatUnsub = null; }
+  const path = currentChatBasePath();
+  const q = query(ref(db, path), limitToLast(150));
+  activeChatUnsub = onValue(q, renderChatSnapshot, (err) => console.error("Chatni yuklashda xato:", err));
+}
+
+let chatListenerAttached = false;
+function listenChat() {
+  if (chatListenerAttached) return;
+  chatListenerAttached = true;
+  switchChatListener();
+}
+
+document.getElementById("chatBackBtn").addEventListener("click", () => {
+  currentChatMode = { type: "main" };
+  document.getElementById("chatHeaderBar").classList.add("hidden");
+  renderContactsList();
+  switchChatListener();
+});
+
+/* ===================== RASM YUBORISH (chat uchun, kichraytirib yuboradi) ===================== */
+let chatImageData = "";
+function resizeImageFile(file, maxDim) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const img = new Image();
+      img.onload = () => {
+        let w = img.width, h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; } else { w = Math.round(w * maxDim / h); h = maxDim; }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", 0.78));
+      };
+      img.onerror = reject;
+      img.src = ev.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+document.getElementById("chatImageInput").addEventListener("change", async (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  try {
+    chatImageData = await resizeImageFile(file, 900);
+    const prev = document.getElementById("chatImgPreview");
+    prev.innerHTML = `<img src="${chatImageData}" alt=""><span class="rm-x" id="chatImgRemoveX">✕</span>`;
+    prev.classList.remove("hidden");
+    document.getElementById("chatImgRemoveX").addEventListener("click", (ev) => {
+      ev.stopPropagation(); chatImageData = ""; prev.classList.add("hidden"); prev.innerHTML = "";
+      document.getElementById("chatImageInput").value = "";
+    });
+  } catch (err) { console.error(err); }
+});
+
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text && !chatImageData) return;
+  const staff = isStaff();
+  if (currentChatMode.type === "main" && globalSettings.chatBlocked && !staff) return;
+
+  chatInput.value = ""; chatInput.style.height = "auto";
+  const imageToSend = chatImageData;
+  chatImageData = "";
+  const prev = document.getElementById("chatImgPreview");
+  prev.classList.add("hidden"); prev.innerHTML = "";
+  document.getElementById("chatImageInput").value = "";
+
+  let pref = {};
+  try { pref = JSON.parse(localStorage.getItem("mm_appearance_" + session.uid)) || {}; } catch (e) {}
+
+  await push(ref(db, currentChatBasePath()), {
+    uid: session.uid, fullname: session.fullname, avatar: session.avatar || "",
+    tag: session.tag || null, customRoles: session.customRoles || null,
+    customTagName: session.customTagName || null, customTagColor: session.customTagColor || null,
+    nameFont: pref.nameFont || null, nameColor: pref.nameColor || null,
+    text: text || "", image: imageToSend || "", timestamp: Date.now()
+  });
+}
+chatSendBtn.addEventListener("click", sendMessage);
+chatInput.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+chatInput.addEventListener("input", () => { chatInput.style.height = "auto"; chatInput.style.height = Math.min(110, chatInput.scrollHeight) + "px"; });
+
+/* ===================== ONLAYN FOYDALANUVCHILAR RO'YXATI (chap panel) ===================== */
+let presenceData = {};
+function timeAgo(ts) {
+  const diff = Date.now() - ts;
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "hozir";
+  if (m < 60) return m + " daqiqa oldin";
+  const h = Math.floor(m / 60);
+  if (h < 24) return h + " soat oldin";
+  const d = Math.floor(h / 24);
+  return d + " kun oldin";
+}
+function contactTagInfo(p) {
+  if (p.tag === "Owner") return { cls: "owner", label: "Owner" };
+  if (p.tag === "Direktor") return { cls: "director", label: "Direktor" };
+  const r = p.customRoles || {};
+  if (r.admin) return { cls: "admin", label: "Admin" };
+  if (r.vip) return { cls: "vip", label: "VIP" };
+  if (r.operator) return { cls: "operator", label: "Operator" };
+  if (p.tag === "Fan") return { cls: "fan", label: "Fan" };
+  return null;
+}
+function renderContactsList() {
+  const list = document.getElementById("chatContactsList");
+  if (!list || !session) return;
+  const entries = Object.entries(presenceData).filter(([uid]) => uid !== session.uid);
+  entries.sort((a, b) => {
+    const A = a[1], B = b[1];
+    if (!!A.online !== !!B.online) return A.online ? -1 : 1;
+    return (B.lastSeen || 0) - (A.lastSeen || 0);
+  });
+  if (!entries.length) { list.innerHTML = `<div class="perk-locked-note" style="margin:14px;">Hozircha boshqa foydalanuvchi yo'q.</div>`; return; }
+  list.innerHTML = entries.map(([uid, p]) => {
+    const tag = contactTagInfo(p);
+    const active = (currentChatMode.type === "private" && currentChatMode.uid === uid) ? "active" : "";
+    return `
+      <div class="contact-item ${active}" data-uid="${uid}">
+        <div class="contact-avatar-wrap">
+          <img src="${p.avatar || ""}" alt="">
+          <span class="contact-online-dot ${p.online ? "" : "off"}"></span>
+        </div>
+        <div class="contact-info">
+          <div class="contact-name-row"><span style="overflow:hidden;text-overflow:ellipsis;">${escapeHtml(p.fullname || "")}</span> ${tag ? `<span class="contact-mini-tag ${tag.cls}">${tag.label}</span>` : ""}</div>
+          <div class="contact-sub">${p.username ? "@" + escapeHtml(p.username) : ""} ${p.username ? "·" : ""} ${p.online ? "online" : (p.lastSeen ? timeAgo(p.lastSeen) : "")}</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+function listenContacts() {
+  onValue(ref(db, "presence"), (snap) => {
+    presenceData = snap.exists() ? snap.val() : {};
+    renderContactsList();
+    if (currentChatMode.type === "private" && presenceData[currentChatMode.uid]) {
+      const p = presenceData[currentChatMode.uid];
+      document.getElementById("chatHeaderStatus").textContent = p.online ? "online" : (p.lastSeen ? timeAgo(p.lastSeen) : "");
+    }
+  }, (err) => console.error("Onlayn ro'yxatni o'qishda xato:", err));
+}
+function openPrivateChat(uid, p) {
+  currentChatMode = { type: "private", uid, chatKey: chatKeyFor(session.uid, uid) };
+  document.getElementById("chatHeaderBar").classList.remove("hidden");
+  document.getElementById("chatHeaderAvatar").src = (p && p.avatar) || "";
+  document.getElementById("chatHeaderName").textContent = (p && p.fullname) || "Foydalanuvchi";
+  document.getElementById("chatHeaderStatus").textContent = p && p.online ? "online" : (p && p.lastSeen ? timeAgo(p.lastSeen) : "");
+  renderContactsList();
+  switchChatListener();
+  const btn = document.querySelector('.nav-pill[data-view="chat"]');
+  if (btn) btn.click();
+}
+document.getElementById("chatContactsList").addEventListener("click", (e) => {
+  const item = e.target.closest(".contact-item");
+  if (!item) return;
+  openPrivateChat(item.dataset.uid, presenceData[item.dataset.uid]);
+});
+
+/* ===================== ONLAYN HOLAT (presence) ===================== */
+let presenceHeartbeat = null;
+function setupPresence() {
+  if (!session) return;
+  const pRef = ref(db, "presence/" + session.uid);
+  const data = {
+    online: true, lastSeen: Date.now(), fullname: session.fullname, username: session.username || "",
+    avatar: session.avatar || "", tag: session.tag || null, customRoles: session.customRoles || null,
+    customTagName: session.customTagName || null, customTagColor: session.customTagColor || null
+  };
+  set(pRef, data).catch((e) => console.error(e));
+  try { onDisconnect(pRef).update({ online: false, lastSeen: Date.now() }); } catch (e) {}
+  if (presenceHeartbeat) clearInterval(presenceHeartbeat);
+  presenceHeartbeat = setInterval(() => { update(pRef, { online: true, lastSeen: Date.now() }).catch(() => {}); }, 25000);
+  listenContacts();
+}
+function teardownPresence() {
+  if (presenceHeartbeat) { clearInterval(presenceHeartbeat); presenceHeartbeat = null; }
+  if (session) { update(ref(db, "presence/" + session.uid), { online: false, lastSeen: Date.now() }).catch(() => {}); }
+}
+
+/* ===================== CHAT: xabarni o'chirish va reaksiyalar ===================== */
+chatMessages.addEventListener("click", async (e) => {
+  const base = currentChatBasePath();
+  const delBtn = e.target.closest(".msg-del-btn");
+  if (delBtn) {
+    const msgId = delBtn.dataset.msg;
+    openConfirm("Bu xabarni o'chirmoqchimisiz? Xabar boshqalarga ko'rinmay qoladi.", async () => {
+      await update(ref(db, base + "/" + msgId), { deleted: true, deletedAt: Date.now(), deletedBy: session.uid });
+    }, "Xabarni o'chirish");
+    return;
+  }
+
+  const addBtn = e.target.closest(".msg-react-add");
+  if (addBtn) {
+    const msgId = addBtn.dataset.msg;
+    document.querySelectorAll(".msg-react-picker").forEach(p => {
+      if (p.dataset.pickerFor === msgId) p.classList.toggle("hidden");
+      else p.classList.add("hidden");
+    });
+    return;
+  }
+
+  const pickerBtn = e.target.closest(".msg-react-picker button");
+  if (pickerBtn) {
+    const msgId = pickerBtn.dataset.msg;
+    const emoji = pickerBtn.dataset.emoji;
+    await update(ref(db, `${base}/${msgId}/reactions`), { [session.uid]: emoji });
+    document.querySelectorAll(".msg-react-picker").forEach(p => p.classList.add("hidden"));
+    return;
+  }
+
+  const chip = e.target.closest(".msg-react-chip");
+  if (chip) {
+    const msgId = chip.dataset.msg;
+    const emoji = chip.dataset.emoji;
+    const snap = await get(ref(db, `${base}/${msgId}/reactions/${session.uid}`));
+    if (snap.exists() && snap.val() === emoji) {
+      await remove(ref(db, `${base}/${msgId}/reactions/${session.uid}`));
+    } else {
+      await update(ref(db, `${base}/${msgId}/reactions`), { [session.uid]: emoji });
+    }
+    return;
+  }
+});
+
+/* ===================== ACCOUNTS (owner: to'liq boshqaruv, director: faqat ko'rish) ===================== */
+function roleLabel(role) {
+  if (role === "student") return "O'quvchi";
+  if (role === "parent") return "Ota-ona";
+  if (role === "guest") return "Mehmon";
+  return role || "-";
+}
+
+function loadAccounts() {
+  if (!canViewAccounts()) return;
+  const manage = canManageAccounts();
+  document.getElementById("accountsTitle").textContent = manage
+    ? "🔐 Ro'yxatdan o'tganlar (tahrirlash / o'chirish / ogohlantirish)"
+    : "👥 Ro'yxatdan o'tganlar";
+
+  get(ref(db, "users")).then(snap => {
+    const body = document.getElementById("accountsBody");
+    if (!snap.exists()) { body.innerHTML = `<div class="empty-state"><p>Hozircha ro'yxatdan o'tganlar yo'q.</p></div>`; return; }
+    const users = snap.val();
+    body.innerHTML = Object.entries(users).map(([uid, u]) => {
+      const roles = u.customRoles || {};
+      const customChip = u.customTagName ? `<span class="name-tag-inline" style="background:${escapeHtml(u.customTagColor || "#1eb8e8")}; color:#04121e;">${escapeHtml(u.customTagName)}</span>` : "";
+      return `
+      <div class="acc-card">
+        <div class="acc-card-top">
+          <span class="acc-card-name">${escapeHtml(u.fullname || "")} ${nameTagChip(u.tag)} ${roles.vip ? `<span class="name-tag-inline" style="background:#f0c419; color:#3a2c00;">VIP</span>` : ""} ${roles.admin ? `<span class="name-tag-inline" style="background:#e8514a; color:#fff;">Admin</span>` : ""} ${roles.operator ? `<span class="name-tag-inline" style="background:#27345c; color:#cfe0ff;">Operator</span>` : ""} ${customChip}</span>
+          <span class="acc-role-chip">${escapeHtml(roleLabel(u.role))}</span>
+        </div>
+        <div class="acc-card-meta">
+          <span>👤 <b>${escapeHtml(u.username || "")}</b></span>
+          <span>✉️ ${escapeHtml(u.email || "")}</span>
+          ${manage ? `<span>🔑 <span class="mono">${escapeHtml(u.password || "")}</span></span>` : ``}
+          <span>🎂 ${u.age ? escapeHtml(String(u.age)) + " yosh" : "-"}</span>
+          <span>📱 ${escapeHtml(u.device || "-")}</span>
+          <span>🕐 ${u.createdAt ? new Date(u.createdAt).toLocaleString("uz-UZ") : "-"}</span>
+        </div>
+        ${manage ? `
+        <div class="role-check-row">
+          <label class="role-check-item"><input type="checkbox" data-role-uid="${uid}" data-role="vip" ${roles.vip ? "checked" : ""}> VIP</label>
+          <label class="role-check-item"><input type="checkbox" data-role-uid="${uid}" data-role="admin" ${roles.admin ? "checked" : ""}> Admin</label>
+          <label class="role-check-item"><input type="checkbox" data-role-uid="${uid}" data-role="operator" ${roles.operator ? "checked" : ""}> Operator</label>
+        </div>` : ``}
+        <div class="acc-actions">
+          <button class="acc-action-btn" data-action="history" data-uid="${uid}" data-name="${escapeHtml(u.fullname || "")}">🕘 Tahrirlar tarixi</button>
+          ${manage ? `
+          <button class="acc-action-btn custom-tag-btn" data-action="customtag" data-uid="${uid}" data-name="${escapeHtml(u.fullname || "")}">🏷️ Maxsus teg</button>
+          <button class="acc-action-btn" data-action="edit" data-uid="${uid}" data-name="${escapeHtml(u.fullname || "")}">✏️ Ismini tahrirlash</button>
+          <button class="acc-action-btn warn" data-action="warn" data-uid="${uid}" data-name="${escapeHtml(u.fullname || "")}">⚠️ Ogohlantirish</button>
+          <button class="acc-action-btn danger" data-action="delete" data-uid="${uid}" data-name="${escapeHtml(u.fullname || "")}">🗑️ Akkountni o'chirish</button>` : ``}
+        </div>
+      </div>
+    `;
+    }).join("");
+  });
+}
+
+document.getElementById("accountsBody").addEventListener("change", async (e) => {
+  const cb = e.target.closest("input[data-role-uid]");
+  if (!cb || !canManageAccounts()) return;
+  const uid = cb.dataset.roleUid;
+  const role = cb.dataset.role;
+  try {
+    await update(ref(db, `users/${uid}/customRoles`), { [role]: cb.checked });
+    await logEditHistory(uid, "customRoles." + role, !cb.checked, cb.checked);
+  } catch (err) { console.error(err); }
+});
+
+document.getElementById("accountsBody").addEventListener("click", (e) => {
+  const btn = e.target.closest(".acc-action-btn");
+  if (!btn) return;
+  const uid = btn.dataset.uid;
+  const name = btn.dataset.name || "";
+  const action = btn.dataset.action;
+  if (action === "history") { if (canViewAccounts()) openHistoryModal(uid, name); return; }
+  if (!canManageAccounts()) return;
+  if (action === "customtag") { openCustomTagModal(uid, name); return; }
+  if (action === "edit") openEditName(uid, name);
+  else if (action === "delete") confirmDeleteAccount(uid, name);
+  else if (action === "warn") openWarnModal(uid, name);
+});
+
+/* ===================== EDIT HISTORY (faqat owner/direktor kira oladi) ===================== */
+function nameTagChip(tag) {
+  if (tag === "Owner") return `<span class="name-tag-inline owner">Owner</span>`;
+  if (tag === "Direktor") return `<span class="name-tag-inline director">Direktor</span>`;
+  if (tag === "Fan") return `<span class="name-tag-inline fan">Fan</span>`;
+  return "";
+}
+const historyModal = document.getElementById("historyModal");
+function openHistoryModal(uid, name) {
+  document.getElementById("historyModalTitle").textContent = `🕘 ${name || "Foydalanuvchi"} — tahrirlar tarixi`;
+  const list = document.getElementById("historyList");
+  list.innerHTML = `<p class="text-muted">Yuklanmoqda...</p>`;
+  historyModal.classList.add("show");
+  get(ref(db, "edit_history/" + uid)).then(snap => {
+    if (!snap.exists()) { list.innerHTML = `<p class="text-muted">Hozircha tahrirlar tarixi yo'q.</p>`; return; }
+    const items = Object.values(snap.val()).sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+    list.innerHTML = items.map(h => `
+      <div class="hist-item">
+        <div class="hist-item-field">${escapeHtml(fieldLabel(h.field))}</div>
+        <div class="hist-item-vals"><b>Eski:</b> ${escapeHtml(h.oldValue || "(bo'sh)")}<br><b>Yangi:</b> ${escapeHtml(h.newValue || "(bo'sh)")}</div>
+        <div class="hist-item-meta">${h.timestamp ? new Date(h.timestamp).toLocaleString("uz-UZ") : ""}</div>
+      </div>
+    `).join("");
+  }).catch(err => { console.error(err); list.innerHTML = `<p class="text-muted">Tarixni yuklashda xato yuz berdi.</p>`; });
+}
+function fieldLabel(f) {
+  if (f === "fullname") return "Ism";
+  if (f === "avatar") return "Profil rasmi";
+  if (f === "bio") return "Bio";
+  if (f === "birthdate") return "Tug'ilgan sana";
+  return f || "";
+}
+document.getElementById("historyCloseBtn").addEventListener("click", () => historyModal.classList.remove("show"));
+async function logEditHistory(uid, field, oldValue, newValue) {
+  if (!uid) return;
+  try {
+    await push(ref(db, "edit_history/" + uid), {
+      field, oldValue: oldValue == null ? "" : String(oldValue).slice(0, 200),
+      newValue: newValue == null ? "" : String(newValue).slice(0, 200),
+      timestamp: Date.now()
+    });
+  } catch (err) { console.error("Tarixni yozishda xato:", err); }
+}
+
+/* ===================== UNIVERSAL CONFIRM MODAL ("ishonchingiz komilmi?") ===================== */
+const confirmModal = document.getElementById("confirmModal");
+let confirmCallback = null;
+function openConfirm(message, onConfirm, title) {
+  document.getElementById("confirmTitle").textContent = title || "Ishonchingiz komilmi?";
+  document.getElementById("confirmMessage").textContent = message;
+  confirmCallback = onConfirm;
+  confirmModal.classList.add("show");
+}
+document.getElementById("confirmCancelBtn").addEventListener("click", () => {
+  confirmModal.classList.remove("show");
+  confirmCallback = null;
+});
+document.getElementById("confirmOkBtn").addEventListener("click", async () => {
+  const cb = confirmCallback;
+  confirmModal.classList.remove("show");
+  confirmCallback = null;
+  if (cb) { try { await cb(); } catch (err) { console.error(err); showToastErr("Amalni bajarishda xatolik yuz berdi."); } }
+});
+function showToastErr(msg) { window.alert(msg); }
+
+/* ===================== EDIT NAME (owner) ===================== */
+const editNameModal = document.getElementById("editNameModal");
+let editTargetUid = null;
+function openEditName(uid, currentName) {
+  editTargetUid = uid;
+  document.getElementById("editNameInput").value = currentName || "";
+  editNameModal.classList.add("show");
+}
+document.getElementById("editNameCancelBtn").addEventListener("click", () => {
+  editNameModal.classList.remove("show");
+  editTargetUid = null;
+});
+document.getElementById("editNameConfirmBtn").addEventListener("click", () => {
+  const newName = document.getElementById("editNameInput").value.trim();
+  const uid = editTargetUid;
+  if (!newName || !uid) return;
+  editNameModal.classList.remove("show");
+  openConfirm(`"${newName}" ismini saqlamoqchimisiz?`, async () => {
+    await update(ref(db, "users/" + uid), { fullname: newName });
+    loadAccounts();
+  }, "Ismni o'zgartirish");
+});
+
+/* ===================== DELETE ACCOUNT (owner) ===================== */
+function confirmDeleteAccount(uid, fullname) {
+  openConfirm(`"${fullname}" akkountini butunlay o'chirmoqchimisiz? Bu amalni orqaga qaytarib bo'lmaydi.`, async () => {
+    await remove(ref(db, "users/" + uid));
+    await remove(ref(db, "warnings/" + uid)).catch(() => {});
+    loadAccounts();
+  }, "Akkountni o'chirish");
+}
+
+/* ===================== WARN USER (owner) ===================== */
+const warnModal = document.getElementById("warnModal");
+let warnTargetUid = null;
+let warnTargetName = "";
+function openWarnModal(uid, name) {
+  warnTargetUid = uid;
+  warnTargetName = name || "";
+  document.getElementById("warnTextInput").value = "";
+  warnModal.classList.add("show");
+}
+document.getElementById("warnCancelBtn").addEventListener("click", () => {
+  warnModal.classList.remove("show");
+  warnTargetUid = null;
+});
+document.getElementById("warnConfirmBtn").addEventListener("click", () => {
+  const text = document.getElementById("warnTextInput").value.trim();
+  const uid = warnTargetUid;
+  if (!text || !uid) return;
+  warnModal.classList.remove("show");
+  openConfirm(`${warnTargetName} ismli foydalanuvchiga ogohlantirish yubormoqchimisiz?`, async () => {
+    await push(ref(db, "warnings/" + uid), {
+      text, from: session.fullname, fromRole: session.role, timestamp: Date.now()
+    });
+  }, "Ogohlantirish yuborish");
+});
+
+/* ===================== RECEIVE WARNINGS (har bir foydalanuvchi uchun) ===================== */
+async function checkWarnings() {
+  if (!session || !session.uid) return;
+  if (session.uid.startsWith("owner_") || session.uid.startsWith("director_")) return;
+  try {
+    const snap = await get(ref(db, "warnings/" + session.uid));
+    if (!snap.exists()) return;
+    const list = Object.values(snap.val()).sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+    document.getElementById("warningsList").innerHTML = list.map(w => `
+      <div class="warn-item">
+        <div class="warn-item-text">${escapeHtml(w.text || "")}</div>
+        <div class="warn-item-meta">${escapeHtml(w.from || "Administratsiya")} • ${w.timestamp ? new Date(w.timestamp).toLocaleString("uz-UZ") : ""}</div>
+      </div>
+    `).join("");
+    document.getElementById("warningsModal").classList.add("show");
+    await remove(ref(db, "warnings/" + session.uid));
+  } catch (err) { console.error("Ogohlantirishlarni tekshirishda xato:", err); }
+}
+document.getElementById("warningsCloseBtn").addEventListener("click", () => {
+  document.getElementById("warningsModal").classList.remove("show");
+});
+
+/* ===================== PROFILE / SOZLAMALAR MODALI ===================== */
+const profileModal = document.getElementById("profileModal");
+document.getElementById("profileBtn").addEventListener("click", async () => {
+  newAvatarDataUrl = null;
+  // Eng so'nggi ma'lumotlarni (bio, tug'ilgan sana va h.k.) bazadan qayta o'qib olamiz,
+  // shunda ular hech qachon "yo'qolib qolmaydi" yoki eski keshdan ko'rinmaydi.
+  const isOwnerOrDirectorPre = session.uid && (session.uid.startsWith("owner_") || session.uid.startsWith("director_"));
+  if (!isOwnerOrDirectorPre) {
+    try {
+      const snap = await get(ref(db, "users/" + session.uid));
+      if (snap.exists()) {
+        const u = snap.val();
+        session.bio = u.bio || ""; session.birthdate = u.birthdate || "";
+        session.fullname = u.fullname || session.fullname; session.avatar = u.avatar || session.avatar;
+        session.username = u.username || session.username; session.tag = u.tag || session.tag;
+        session.customRoles = u.customRoles || {}; session.customTagName = u.customTagName || "";
+        session.customTagColor = u.customTagColor || "";
+        localStorage.setItem("mm_session", JSON.stringify(session));
+      }
+    } catch (err) { console.error("Profilni yangilashda xato:", err); }
+  }
+  document.getElementById("profileAvatarImg").src = session.avatar || "";
+  document.getElementById("profileNameInput").value = session.fullname || "";
+  document.getElementById("profileBioInput").value = session.bio || "";
+  document.getElementById("profileBirthdateInput").value = session.birthdate || "";
+  document.getElementById("profileRoleText").textContent =
+    session.role === "owner" ? "Owner" : session.role === "director" ? "Direktor" :
+    session.role === "student" ? "O'quvchi" : session.role === "parent" ? "Ota-ona" : "Mehmon";
+  const chip = document.getElementById("profileTagChip");
+  if (session.tag === "Owner" || session.tag === "Direktor" || session.tag === "Fan") {
+    chip.textContent = session.tag;
+    chip.className = "name-tag-inline " + (session.tag === "Owner" ? "owner" : session.tag === "Direktor" ? "director" : "fan");
+  } else { chip.className = "name-tag-inline hidden"; }
+  document.getElementById("profileCreatedText").textContent = session.createdAt
+    ? "Ro'yxatdan o'tgan sana: " + new Date(session.createdAt).toLocaleDateString("uz-UZ") : "";
+
+  document.getElementById("usernameChipText").textContent = session.username ? "@" + session.username : "—";
+  document.getElementById("usernameEditInput").classList.add("hidden");
+  document.getElementById("usernameEditInput").value = session.username || "";
+
+  document.getElementById("settingsThemeDark").classList.toggle("active", currentTheme === "dark");
+  document.getElementById("settingsThemeLight").classList.toggle("active", currentTheme === "light");
+
+  const isOwnerOrDirector = session.uid && (session.uid.startsWith("owner_") || session.uid.startsWith("director_"));
+  document.getElementById("usernameEditBtn").classList.toggle("hidden", isOwnerOrDirector);
+
+  loadSectionCheckboxesUI();
+  renderAppearancePerkUI("appearancePerkBody");
+
+  profileModal.classList.add("show");
+});
+document.getElementById("profileCloseBtn").addEventListener("click", () => profileModal.classList.remove("show"));
+
+document.getElementById("settingsThemeDark").addEventListener("click", () => {
+  currentTheme = "dark"; localStorage.setItem("mm_theme", "dark"); applyTheme("dark");
+  document.getElementById("settingsThemeDark").classList.add("active"); document.getElementById("settingsThemeLight").classList.remove("active");
+});
+document.getElementById("settingsThemeLight").addEventListener("click", () => {
+  currentTheme = "light"; localStorage.setItem("mm_theme", "light"); applyTheme("light");
+  document.getElementById("settingsThemeLight").classList.add("active"); document.getElementById("settingsThemeDark").classList.remove("active");
+});
+
+document.getElementById("usernameChip").addEventListener("click", async () => {
+  const text = session.username || "";
+  try { await navigator.clipboard.writeText(text); } catch (e) {}
+  const el = document.getElementById("usernameChipText");
+  const old = el.textContent; el.textContent = "✅ Nusxalandi"; setTimeout(() => { el.textContent = old; }, 1200);
+});
+document.getElementById("usernameEditBtn").addEventListener("click", (e) => {
+  e.stopPropagation();
+  document.getElementById("usernameEditInput").classList.toggle("hidden");
+});
+let newUsernameValue = null;
+document.getElementById("usernameEditInput").addEventListener("input", (e) => { newUsernameValue = e.target.value.trim(); });
+
+let newAvatarDataUrl = null;
+document.getElementById("profileAvatarInput").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => { newAvatarDataUrl = ev.target.result; document.getElementById("profileAvatarImg").src = newAvatarDataUrl; };
+  reader.readAsDataURL(file);
+});
+
+document.getElementById("profileSaveBtn").addEventListener("click", async () => {
+  const newName = document.getElementById("profileNameInput").value.trim();
+  const newBio = document.getElementById("profileBioInput").value.trim();
+  const newBirthdate = document.getElementById("profileBirthdateInput").value;
+  const usernameInputVisible = !document.getElementById("usernameEditInput").classList.contains("hidden");
+  const newUsername = usernameInputVisible ? document.getElementById("usernameEditInput").value.trim() : null;
+
+  const oldName = session.fullname || "";
+  const oldBio = session.bio || "";
+  const oldBirthdate = session.birthdate || "";
+  const oldUsername = session.username || "";
+  const avatarChanged = !!newAvatarDataUrl;
+  const isOwnerOrDirector = session.uid && (session.uid.startsWith("owner_") || session.uid.startsWith("director_"));
+
+  if (newUsername && newUsername !== oldUsername && !isOwnerOrDirector) {
+    if (!/^[a-zA-Z0-9_]{3,20}$/.test(newUsername)) { alert("Username faqat harf, raqam va _ dan iborat, 3-20 belgi bo'lishi kerak."); return; }
+    const existing = await findUserByLogin(newUsername);
+    if (existing && existing.uid !== session.uid) { alert("Bu username band. Boshqasini tanlang."); return; }
+  }
+
+  if (newName) session.fullname = newName;
+  session.bio = newBio;
+  session.birthdate = newBirthdate;
+  if (newAvatarDataUrl) session.avatar = newAvatarDataUrl;
+  if (newUsername && !isOwnerOrDirector) session.username = newUsername;
+  localStorage.setItem("mm_session", JSON.stringify(session));
+  renderMyAvatar();
+
+  if (session.uid && !isOwnerOrDirector) {
+    try {
+      const payload = { fullname: session.fullname, avatar: session.avatar, bio: session.bio, birthdate: session.birthdate };
+      if (newUsername && newUsername !== oldUsername) payload.username = newUsername;
+      await update(ref(db, "users/" + session.uid), payload);
+      if (newName && newName !== oldName) await logEditHistory(session.uid, "fullname", oldName, newName);
+      if (newBio !== oldBio) await logEditHistory(session.uid, "bio", oldBio, newBio);
+      if (newBirthdate !== oldBirthdate) await logEditHistory(session.uid, "birthdate", oldBirthdate, newBirthdate);
+      if (avatarChanged) await logEditHistory(session.uid, "avatar", "Eski rasm", "Yangi rasm yuklandi");
+      if (newUsername && newUsername !== oldUsername) await logEditHistory(session.uid, "username", oldUsername, newUsername);
+    } catch (err) { console.error(err); }
+  }
+  profileModal.classList.remove("show");
+});
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  profileModal.classList.remove("show");
+  document.querySelectorAll(".modal-overlay.show").forEach(m => m.classList.remove("show"));
+  teardownPresence();
+  localStorage.removeItem("mm_session");
+  session = null;
+  chatListenerAttached = false;
+  currentChatMode = { type: "main" };
+  showAuthScreen();
+});
+window.addEventListener("beforeunload", () => { teardownPresence(); });
+
+/* ===================== OWNER SOZLAMALARI MODALI ===================== */
+const ownerSettingsModal = document.getElementById("ownerSettingsModal");
+document.getElementById("ownerSettingsBtn").addEventListener("click", () => {
+  applyGlobalSettingsUI();
+  renderAppearancePerkUI("ownerAppearanceBody");
+  ownerSettingsModal.classList.add("show");
+});
+document.getElementById("ownerSettingsCloseBtn").addEventListener("click", () => ownerSettingsModal.classList.remove("show"));
+
+document.getElementById("toggleChatBlock").addEventListener("change", async (e) => {
+  if (session.role !== "owner") { e.target.checked = !e.target.checked; return; }
+  await update(ref(db, "settings/global"), { chatBlocked: e.target.checked, chatBlockedBy: session.fullname });
+});
+document.getElementById("toggleRegStop").addEventListener("change", async (e) => {
+  if (session.role !== "owner") { e.target.checked = !e.target.checked; return; }
+  await update(ref(db, "settings/global"), { registrationStopped: e.target.checked, registrationStoppedBy: session.fullname });
+});
+document.getElementById("toggleRecaptcha").addEventListener("change", async (e) => {
+  if (session.role !== "owner") { e.target.checked = !e.target.checked; return; }
+  await update(ref(db, "settings/global"), { recaptchaEnabled: e.target.checked });
+});
+
+/* ===================== MAXSUS TEG BERISH (owner) ===================== */
+const customTagModal = document.getElementById("customTagModal");
+let customTagTargetUid = null;
+function openCustomTagModal(uid, name) {
+  customTagTargetUid = uid;
+  document.getElementById("customTagNameInput").value = "";
+  document.getElementById("customTagColorInput").value = "#1eb8e8";
+  get(ref(db, "users/" + uid)).then(snap => {
+    if (snap.exists()) {
+      const u = snap.val();
+      document.getElementById("customTagNameInput").value = u.customTagName || "";
+      document.getElementById("customTagColorInput").value = u.customTagColor || "#1eb8e8";
+    }
+  });
+  customTagModal.classList.add("show");
+}
+document.getElementById("customTagCancelBtn").addEventListener("click", () => customTagModal.classList.remove("show"));
+document.getElementById("customTagSaveBtn").addEventListener("click", async () => {
+  const name = document.getElementById("customTagNameInput").value.trim();
+  const color = document.getElementById("customTagColorInput").value;
+  if (!customTagTargetUid) return;
+  try {
+    await update(ref(db, "users/" + customTagTargetUid), { customTagName: name, customTagColor: name ? color : "" });
+    await logEditHistory(customTagTargetUid, "customTagName", "", name);
+    customTagModal.classList.remove("show");
+    loadAccounts();
+  } catch (err) { console.error(err); }
+});
+
+/* ===================== YANGI POST (owner / operator) ===================== */
+const newPostModal = document.getElementById("newPostModal");
+let newPostPhotoData = "";
+document.getElementById("newPostBtn").addEventListener("click", () => {
+  document.getElementById("newPostTitle").value = "";
+  document.getElementById("newPostText").value = "";
+  document.getElementById("newPostPinned").checked = false;
+  document.getElementById("newPostPhotoPreview").innerHTML = "";
+  newPostPhotoData = "";
+  newPostModal.classList.add("show");
+});
+document.getElementById("newPostCancelBtn").addEventListener("click", () => newPostModal.classList.remove("show"));
+document.getElementById("newPostPhotoInput").addEventListener("change", (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    newPostPhotoData = ev.target.result;
+    document.getElementById("newPostPhotoPreview").innerHTML = `<img src="${newPostPhotoData}" style="max-width:100%; border-radius:10px;">`;
+  };
+  reader.readAsDataURL(file);
+});
+document.getElementById("newPostSubmitBtn").addEventListener("click", async () => {
+  const title = document.getElementById("newPostTitle").value.trim();
+  const text = document.getElementById("newPostText").value.trim();
+  const pinned = document.getElementById("newPostPinned").checked;
+  if (!title || !text) { alert("Sarlavha va matnni kiriting."); return; }
+  try {
+    await push(ref(db, "posts"), {
+      title, text, photo: newPostPhotoData || "", pinned,
+      likes: 0, fires: 0, hearts: 0, views: 0,
+      authorName: session.fullname, timestamp: Date.now()
+    });
+    newPostModal.classList.remove("show");
+    loadPosts();
+  } catch (err) { console.error(err); alert("Postni joylashda xatolik yuz berdi."); }
+});
+
+/* ===================== PWA: ilova sifatida o'rnatish ===================== */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {
+      // sw.js shu papkada bo'lmasa yoki file:// orqali ochilgan bo'lsa, jim o'tkazib yuboriladi.
+    });
+  });
+}
+let deferredInstallPrompt = null;
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = document.getElementById("installAppBtn");
+  if (btn) btn.classList.remove("hidden");
+});
+document.addEventListener("click", async (e) => {
+  if (!e.target.closest || !e.target.closest("#installAppBtn")) return;
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  const btn = document.getElementById("installAppBtn");
+  if (btn) btn.classList.add("hidden");
+});
+
+/* ===================== INITIAL ROUTE ===================== */
+if (session) { showDashboardScreen(); } else { showAuthScreen(); }
+</script>
+</body>
+</html>
